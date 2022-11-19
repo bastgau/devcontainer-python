@@ -1,0 +1,20 @@
+{
+    "debug.internalConsoleOptions": "neverOpen",
+    "python.terminal.activateEnvironment": true,
+    "python.defaultInterpreterPath": "/workspaces/app/.venv/bin/python",
+    "python.linting.pylamaEnabled": false,
+    "python.linting.pylamaPath": "/workspaces/app/.venv/bin/pylama",
+    "python.linting.mypyEnabled": false,
+    "python.linting.mypyArgs": [],
+    "python.linting.mypyPath": "/workspaces/app/.venv/bin/mypy",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintPath": "/workspaces/app/.venv/bin/pylint",
+    "python.linting.enabled": true,
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfPath": "/workspaces/app/.venv/bin/yapf",
+    "editor.formatOnSave": true,
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
+    "files.eol": "\n"
+}
