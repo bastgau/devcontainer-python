@@ -1,5 +1,5 @@
 # See here for image contents:
-ARG VARIANT="3.11-bullseye"
+ARG VARIANT="3.10-bullseye"
 FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT}
 
 WORKDIR /workspaces/app
@@ -18,20 +18,3 @@ RUN rm -rvf /tmp/config_container
 # Create virtual environment:
 
 VOLUME $WORKSPACE_FOLDER/.venv
-
-ENV VIRTUAL_ENV=$WORKSPACE_FOLDER/.venv
-RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-
-# Install python dependencies:
-
-RUN mkdir /tmp/config_container
-
-COPY /requirements-dev.txt /tmp/config_container/requirements-dev.txt
-COPY /requirements.txt /tmp/config_container/requirements-all.txt
-
-RUN pip install --upgrade pip
-RUN pip install -r /tmp/config_container/requirements-dev.txt
-RUN pip install -r /tmp/config_container/requirements-all.txt
-
-RUN rm -rvf /tmp/config_container
