@@ -18,3 +18,7 @@ RUN rm -rvf /tmp/config_container
 # Create virtual environment:
 
 VOLUME $WORKSPACE_FOLDER/.venv
+
+# Fix issue with pylint and other linters:
+
+ENV PYTHONPATH=$WORKSPACE_FOLDER
