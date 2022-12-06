@@ -1,7 +1,7 @@
-![Maintainer](https://img.shields.io/badge/maintainer-bastgau-blue)
-[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://gitHub.com/bastgau)
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
-
+[![maintainer](https://badgen.net/badge/maintainer/bastgau/orange?color=orange&icon=github)](https://gitHub.com/bastgau)
+[![twitter](https://badgen.net/badge/twitter/_bastiengautier/?color=orange&icon=twitter)](https://www.twitter.com/_bastiengautier)
+[![made-for-vscode](https://badgen.net/badge/Made%20for/VSCode/?color=blue)](https://code.visualstudio.com/)
+[![made-with-python](https://badgen.net/badge/Made%20with/Python/?color=blue&icon=python)](https://www.python.org/)
+[![made-with-docker](https://badgen.net/badge/Made%20with/Docker/?color=blue&icon=docker)](https://www.docker.com/)
 
 # devcontainer-python
