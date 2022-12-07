@@ -20,5 +20,16 @@
     "files.exclude": {
         "**/__pycache__": true,
         "**/.mypy_cache": true
-    }
+    },
+    "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.importFormat": "absolute",
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.logLevel": "Trace",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportUnusedVariable": "information"
+    },
+    "python.languageServer": "Pylance",
+    "python.analysis.exclude": [
+        "**/.venv"
+    ]
 }
