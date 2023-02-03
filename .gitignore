@@ -138,3 +138,7 @@ __azurite_db*__.json
 .DS_Store
 ._DS_Store
 __MACOSX/
+
+# Temporary directory
+tmp
+temp
