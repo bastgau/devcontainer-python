@@ -2,3 +2,4 @@ pylama
 pylint
 mypy
 yapf
+flake8

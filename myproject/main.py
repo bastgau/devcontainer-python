@@ -12,6 +12,7 @@
 
 # Pylint: Line too long (110/100)
 # Pylama: Line too long (110 > 100 characters) [pycodestyle]
+# Flake8: Line too long (110 > 100 characters) [pycodestyle]
 # > Change the configuration or the code to resolve the issue.
 
 import pandas as pd
