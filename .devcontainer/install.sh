@@ -24,7 +24,10 @@ PATH="/workspaces/app/.venv/bin:$PATH"
 
 echo -e "Done.\n"
 
-echo -e "${GREEN}> Identify the packaging and dependency manager to install.${ENDCOLOR}\n"
+echo -e "${GREEN}> Update PIP tool.${ENDCOLOR}\n"
+pip install --upgrade pip
+
+echo -e "\n${GREEN}> Identify the packaging and dependency manager to install.${ENDCOLOR}\n"
 
 PIP_MANAGER=false
 POETRY_MANAGER=false
@@ -84,9 +87,7 @@ source /workspaces/app/.venv/bin/activate
 if [ "$PIP_MANAGER" = true ];
 then
 
-    echo -e "${GREEN}> Update PIP tool and install dependencies.${ENDCOLOR}\n"
-
-    pip install --upgrade pip
+    echo -e "${GREEN}> Install dependencies with PIP.${ENDCOLOR}\n"
 
     # pip install keyring artifacts-keyring
 
