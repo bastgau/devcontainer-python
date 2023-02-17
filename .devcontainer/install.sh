@@ -117,4 +117,5 @@ then
 
 fi
 
+chmod +x /workspaces/app/.devcontainer/check-post-install.sh
 /workspaces/app/.devcontainer/check-post-install.sh
