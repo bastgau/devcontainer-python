@@ -75,8 +75,19 @@ then
         echo -e "Done.\n"
     else
         echo -e "${GREEN}> Initialize PIP Manager (requirements-dev.txt).${ENDCOLOR}\n"
-        echo -e "PIP configuration file was created (requirements-dev.txt).\n"
         touch /workspaces/app/requirements-dev.txt
+        echo -e "PIP configuration file was created (requirements-dev.txt).\n"
+    fi
+
+    if [ -f "/workspaces/app/requirements-test.txt" ];
+    then
+        echo -e "${GREEN}> Install dependencies with PIP (requirements-test.txt).${ENDCOLOR}\n"
+        pip install -r /workspaces/app/requirements-test.txt
+        echo -e "Done.\n"
+    else
+        echo -e "${GREEN}> Initialize PIP Manager (requirements-test.txt).${ENDCOLOR}\n"
+        touch /workspaces/app/requirements-test.txt
+        echo -e "PIP configuration file was created (requirements-test.txt).\n"
     fi
 
     if [ -f "/workspaces/app/requirements.txt" ];
@@ -86,8 +97,8 @@ then
         echo -e "Done.\n"
     else
         echo -e "${GREEN}> Initialize PIP Manager (requirements.txt).${ENDCOLOR}\n"
-        echo -e "PIP configuration file was created (requirements.txt).\n"
         touch /workspaces/app/requirements.txt
+        echo -e "PIP configuration file was created (requirements.txt).\n"
     fi
 
 fi
