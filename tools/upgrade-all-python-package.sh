@@ -13,7 +13,11 @@ ENDCOLOR="\e[0m"
 
 clear
 
-
+echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
+echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
+echo -e "${BLUE}#####           UPGRADE PYTHON PACKAGES                 #####${ENDCOLOR}"
+echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
+echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
 echo -e "\n${GREEN}> Identify the packaging and dependency manager to install.${ENDCOLOR}\n"
 

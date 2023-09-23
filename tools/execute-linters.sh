@@ -69,10 +69,13 @@ fi
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/yapf" ]; then
     echo -e "\n${YELLOW}> Yapf.${ENDCOLOR}"
-    yapf --diff $PACKAGE_PATH --recursive
+    result=$(yapf --diff $PACKAGE_PATH --recursive | grep "(reformatted)" | grep "+++")
 
-    if [ "$?" -eq 0 ]; then
+    if [ "$result" = "" ]; then
         echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
+    else
+        result_modified=$(echo "$result" | sed 's/+++/would reformat/g; s/(reformatted)//g')
+        echo -e "${BOLD}$result_modified${ENDCOLOR}"
     fi
 fi
 
@@ -82,3 +85,5 @@ if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/black" ]; then
     echo -e "\n${YELLOW}> Black.${ENDCOLOR}"
     black --check $PACKAGE_PATH
 fi
+
+echo -e ""

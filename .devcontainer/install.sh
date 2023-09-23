@@ -6,9 +6,11 @@ BLUE="\e[34m"
 YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
 
-echo -e "\n${BLUE}################################"
-echo -e "${BLUE}####       INSTALL.SH       ####${ENDCOLOR}"
-echo -e "${BLUE}################################"
+echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
+echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
+echo -e "${BLUE}#####           GENERAL INSTALLATION                    #####${ENDCOLOR}"
+echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
+echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
 echo -e "\n${GREEN}> Configure virtual environment.${ENDCOLOR}\n"
 
@@ -69,38 +71,75 @@ source $WORKSPACE_PATH/.venv/bin/activate
 if [ "$PIP_MANAGER" = true ];
 then
 
-    if [ -f "$WORKSPACE_PATH/requirements-dev.txt" ];
+    if [ ! -f "$WORKSPACE_PATH/requirements.txt" ];
     then
-        echo -e "${GREEN}> Install dependencies with PIP (requirements-dev.txt).${ENDCOLOR}\n"
-        pip install -r $WORKSPACE_PATH/requirements-dev.txt
-        echo -e "Done.\n"
-    else
-        echo -e "${GREEN}> Initialize PIP Manager (requirements-dev.txt).${ENDCOLOR}\n"
-        touch $WORKSPACE_PATH/requirements-dev.txt
-        echo -e "PIP configuration file was created (requirements-dev.txt).\n"
-    fi
-
-    if [ -f "$WORKSPACE_PATH/requirements-test.txt" ];
-    then
-        echo -e "${GREEN}> Install dependencies with PIP (requirements-test.txt).${ENDCOLOR}\n"
-        pip install -r $WORKSPACE_PATH/requirements-test.txt
-        echo -e "Done.\n"
-    else
-        echo -e "${GREEN}> Initialize PIP Manager (requirements-test.txt).${ENDCOLOR}\n"
-        touch $WORKSPACE_PATH/requirements-test.txt
-        echo -e "PIP configuration file was created (requirements-test.txt).\n"
-    fi
-
-    if [ -f "$WORKSPACE_PATH/requirements.txt" ];
-    then
-        echo -e "${GREEN}> Install dependencies with PIP (requirements.txt).${ENDCOLOR}\n"
-        pip install -r $WORKSPACE_PATH/requirements.txt
-        echo -e "Done.\n"
-    else
         echo -e "${GREEN}> Initialize PIP Manager (requirements.txt).${ENDCOLOR}\n"
         touch $WORKSPACE_PATH/requirements.txt
         echo -e "PIP configuration file was created (requirements.txt).\n"
     fi
+
+    echo -e "${GREEN}> Install dependencies with PIP (requirements.txt).${ENDCOLOR}\n"
+    pip install -r $WORKSPACE_PATH/requirements.txt
+    echo -e "Done.\n"
+
+    if [ ! -f "$WORKSPACE_PATH/requirements-dev.txt" ];
+    then
+        echo -e "${GREEN}> Initialize PIP Manager (requirements-dev.txt).${ENDCOLOR}\n"
+
+        defaultFormatter=$(jq -r '.customizations.vscode.settings."editor.defaultFormatter"' .devcontainer/devcontainer.json);
+
+        formatter_package=""
+
+        if [ "$defaultFormatter" = "ms-python.black-formatter" ];
+        then
+            formatter_package="black"
+        fi
+
+        if [ "$defaultFormatter" = "eeyore.yapf" ];
+        then
+            formatter_package="yapf"
+        fi
+
+cat <<EOF >>$WORKSPACE_PATH/requirements-dev.txt
+yamllint
+pyright
+pylint
+flake8
+mypy
+$formatter_package
+EOF
+
+        echo -e "PIP configuration file was created (requirements-dev.txt).\n"
+
+    fi
+
+    echo -e "${GREEN}> Install dependencies with PIP (requirements-dev.txt).${ENDCOLOR}\n"
+    pip install -r $WORKSPACE_PATH/requirements-dev.txt
+    echo -e "Done.\n"
+
+    if [ ! -f "$WORKSPACE_PATH/requirements-test.txt" ];
+    then
+        echo -e "${GREEN}> Initialize PIP Manager (requirements-test.txt).${ENDCOLOR}\n"
+
+        unittest_active=$(jq -r '.customizations.vscode.settings."python.testing.pytestEnabled"' .devcontainer/devcontainer.json);
+
+        unittest_package=""
+
+        if [ "$unittest_active" = "true" ];
+        then
+            unittest_package="pytest"
+        fi
+
+cat <<EOF >>$WORKSPACE_PATH/requirements-test.txt
+$unittest_package
+EOF
+
+        echo -e "PIP configuration file was created (requirements-test.txt).\n"
+    fi
+
+    echo -e "${GREEN}> Install dependencies with PIP (requirements-test.txt).${ENDCOLOR}\n"
+    pip install -r $WORKSPACE_PATH/requirements-test.txt
+    echo -e "Done.\n"
 
 fi
 
@@ -120,8 +159,8 @@ then
 
 fi
 
-sudo chmod +x $WORKSPACE_PATH/.devcontainer/check-post-install.sh
-$WORKSPACE_PATH/.devcontainer/check-post-install.sh
+sudo chmod +x $WORKSPACE_PATH/.devcontainer/install-post.sh
+$WORKSPACE_PATH/.devcontainer/install-post.sh
 
 cd $WORKSPACE_PATH
 

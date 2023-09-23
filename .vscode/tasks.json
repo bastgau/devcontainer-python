@@ -46,7 +46,7 @@
         {
             "label": "Tools: Purge Cache",
             "type": "shell",
-            "command": "${workspaceFolder}/tools/purge-cache.sh",
+            "command": "${workspaceFolder}/tools/execute-purge-python-cache.sh",
             "problemMatcher": [],
             "group": {
                 "kind": "none",

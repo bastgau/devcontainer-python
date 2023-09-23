@@ -10,9 +10,6 @@
 
 ### Install extension
 
-Name: Autopep8
-VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ms-python.autopep8
-
 Name: Black
 VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter
 
@@ -24,9 +21,6 @@ VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=eeyore.
 /workspaces/app/.devcontainer/devcontainer.json
 
 "editor.defaultFormatter": null
-
-Autopep8 "ms-python.autopep8"
-"___editor.defaultFormatter": "ms-python.autopep8"
 
 Black "ms-python.black-formatter"
 "__editor.defaultFormatter": "ms-python.black-formatter"

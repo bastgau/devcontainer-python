@@ -55,10 +55,10 @@
                     "**/.pytest_cache": true
                 },
                 "python.testing.unittestEnabled": false,
-                "python.testing.pytestEnabled": true,
+                "python.testing.pytestEnabled": false,
                 "editor.formatOnSaveMode": "file",
                 "editor.formatOnSave": true,
-                "editor.defaultFormatter": "eeyore.yapf"
+                "editor.defaultFormatter": null
             }
         }
     },
