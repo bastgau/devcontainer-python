@@ -6,34 +6,4 @@
 
 # devcontainer-python
 
-
-## Linters & tools
-
-> Linters are programs that advise about code quality by displaying warnings and errors.
-
-By default, the following linters and tools are installed and configured:
-
-- [Flake8](https://github.com/pycqa/flake8/)
-- [Mypy](https://mypy.readthedocs.io/en/stable/)
-- [Pylama](https://klen.github.io/pylama/)
-- [Pylint](https://pylint.pycqa.org/en/latest/)
-- [Yapf](https://github.com/google/yapf)
-
-You could find my own configuration in the setup.cfg file.<br>
-Don't hesitate to share with me your own configuration.
-
-## VSCode extensions
-
-The following extensions are recommanded:
-
-- [AutoDocstring - Python Docstring Generator](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
-- [Prettify JSON](https://marketplace.visualstudio.com/items?itemName=mohsen1.prettify-json)
-- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
-- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [Python Type Hint](https://marketplace.visualstudio.com/items?itemName=njqdev.vscode-python-typehint)
-- [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)
-- [VSCode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)
-
-The file .vcode/settings.json was updated with my own configuration.
-
-Enjoy!
+After cloning the repository, please check the documentation [to create a new project](./docs/dev-container-configuration/00-configure-new-project.md).

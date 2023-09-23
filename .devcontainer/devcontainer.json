@@ -1,36 +1,65 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/python-3
 {
 	"name": "Python 3",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/app,type=bind",
 	"workspaceFolder": "/workspaces/app",
+    "mounts": [
+        "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,readonly"
+    ],
+    "runArgs": [
+        "--env-file",
+        ".devcontainer/project.env",
+        "--env-file",
+        ".devcontainer/user.env"
+    ],
 	"build": {
 		"dockerfile": "Dockerfile",
 		"context": "..",
-		"args": {
-			// Update 'VARIANT' to pick a Python version: 3, 3.10, 3.9, 3.8, 3.7, 3.6
-			// Append -bullseye or -buster to pin to an OS version.
-			// Use -bullseye variants on local on arm64/Apple Silicon.
-			"VARIANT": "3.10-bullseye",
-			// Options
+        "args": {
+            "VARIANT": "3.11-bullseye",
 			"NODE_VERSION": "lts/*"
 		}
-	},
-	// Configure tool-specific properties.
-	"customizations": {
-		// Configure properties specific to VS Code.
-		"vscode": {
-			// Add the IDs of extensions you want installed when the container is created.
+    },
+    "customizations": {
+        "vscode": {
 			"extensions": [
 				"ms-python.python",
-				"ms-python.vscode-pylance"
-			]
+                "ms-python.vscode-pylance",
+                "ms-python.pylint",
+                "sanaajani.taskrunnercode"
+            ],
+            "settings": {
+                "python.terminal.activateEnvironment": true,
+                "python.defaultInterpreterPath": "/workspaces/app/.venv/bin/python",
+                "python.createEnvironment.contentButton": "hide",
+                "python.analysis.typeCheckingMode": "strict",
+                "python.analysis.importFormat": "absolute",
+                "python.analysis.diagnosticMode": "workspace",
+                "python.analysis.logLevel": "Trace",
+                "python.languageServer": "Pylance",
+                "python.analysis.exclude": [
+                    "**/.venv"
+                ],
+                "python.testing.pytestArgs": [
+                    "tests"
+                ],
+                "files.trimTrailingWhitespace": true,
+                "files.trimFinalNewlines": true,
+                "files.insertFinalNewline": true,
+                "files.eol": "\n",
+                "files.exclude": {
+                    "**/__pycache__": true,
+                    "**/.mypy_cache": true,
+                    "**/.venv": true,
+                    "**/.pytest_cache": true
+                },
+                "python.testing.unittestEnabled": false,
+                "python.testing.pytestEnabled": false,
+                "editor.formatOnSaveMode": "file",
+                "editor.formatOnSave": true,
+                "editor.defaultFormatter": null
+            }
 		}
-	},
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sudo chmod +x /workspaces/app/.devcontainer/install.sh && /workspaces/app/.devcontainer/install.sh",
-	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+    },
+    "postCreateCommand": "sudo chmod +x /workspaces/app/.devcontainer/install.sh && /workspaces/app/.devcontainer/install.sh",
 	"remoteUser": "vscode"
 }

@@ -2,13 +2,13 @@
     "recommendations": [
         "njpwerner.autodocstring",
         "aaron-bond.better-comments",
-        "streetsidesoftware.code-spell-checker",
-        "discretegames.f5anything",
         "mohsen1.prettify-json",
         "vscode-icons-team.vscode-icons",
-        "foxundermoon.shell-format",
-        "sanaajani.taskrunnercode",
         "gruntfuggly.todo-tree",
-        "redhat.vscode-yaml"
+        "ms-python.mypy-type-checker",
+        "eeyore.yapf",
+        "ms-python.flake8",
+        "ms-python.black-formatter",
+        "ms-python.autopep8"
     ]
 }

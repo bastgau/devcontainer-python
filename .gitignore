@@ -142,3 +142,7 @@ __MACOSX/
 # Temporary directory
 tmp
 temp
+
+# Ignore developer personal files
+.devcontainer/user.env
+.vscode/settings.json

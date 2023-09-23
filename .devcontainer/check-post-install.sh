@@ -3,6 +3,7 @@
 RED="\e[31m"
 GREEN="\e[32m"
 BLUE="\e[34m"
+YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
 
 echo -e "\n${BLUE}#####################################"
@@ -23,4 +24,5 @@ fi
 
 # ADD [here] your other verification todo.
 
-echo -e ""
+echo -e "\n${YELLOW}Installation is finished!${ENDCOLOR}"
+echo -e "${YELLOW}You can close this terminal and re-open a new terminal!${ENDCOLOR}\n"
