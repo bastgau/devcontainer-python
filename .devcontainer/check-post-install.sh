@@ -10,7 +10,7 @@ echo -e "\n${BLUE}#####################################"
 echo -e "${BLUE}####    CHECK-POST-INSTALL.SH    ####${ENDCOLOR}"
 echo -e "${BLUE}#####################################"
 
-source /workspaces/app/.venv/bin/activate
+source $WORKSPACE_PATH/.venv/bin/activate
 
 if which pip >/dev/null; then
     echo -e "\n${GREEN}> Display PIP info/version.${ENDCOLOR}\n"

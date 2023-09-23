@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "All Python Packages: Install / Update",
+            "label": "Tools: Update all Python Packages",
             "type": "shell",
             "command": "${workspaceFolder}/tools/upgrade-all-python-package.sh",
             "problemMatcher": [],
@@ -14,12 +14,52 @@
             }
         },
         {
-            "label": "CI/CD: Execute",
+            "label": "CI/CD: Build Package",
+            "type": "shell",
+            "command": "${workspaceFolder}/tools/execute-build-package.sh",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "CI/CD: Configuration Files Check",
+            "type": "shell",
+            "command": "${workspaceFolder}/tools/execute-configuration-check.sh",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "CI/CD: Execute Linters",
             "type": "shell",
             "command": "${workspaceFolder}/tools/execute-linters.sh",
             "problemMatcher": [],
             "group": {
                 "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "CI/CD: Execute Tests",
+            "type": "shell",
+            "command": "${workspaceFolder}/tools/execute-tests.sh",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Tools: Purge Cache",
+            "type": "shell",
+            "command": "${workspaceFolder}/tools/purge-cache.sh",
+            "problemMatcher": [],
+            "group": {
+                "kind": "none",
                 "isDefault": true
             }
         }

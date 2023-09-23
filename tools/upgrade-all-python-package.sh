@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /workspaces/app/.venv/bin/activate
+source $WORKSPACE_PATH/.venv/bin/activate
 sleep 0.5
 
 RED="\e[31m"
@@ -12,6 +12,8 @@ BOLD="\e[1m"
 ENDCOLOR="\e[0m"
 
 clear
+
+
 
 echo -e "\n${GREEN}> Identify the packaging and dependency manager to install.${ENDCOLOR}\n"
 
@@ -29,6 +31,10 @@ then
 
     echo -e "${GREEN}> Update dependencies with PIP (requirements-dev.txt).${ENDCOLOR}\n"
     pip install -r /workspaces/app/requirements-dev.txt --upgrade
+    echo -e "Done.\n"
+
+    echo -e "${GREEN}> Update dependencies with PIP (requirements-test.txt).${ENDCOLOR}\n"
+    pip install -r /workspaces/app/requirements-test.txt --upgrade
     echo -e "Done.\n"
 
 fi

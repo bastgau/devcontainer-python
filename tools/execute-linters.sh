@@ -13,27 +13,20 @@ ENDCOLOR="\e[0m"
 
 clear
 
+echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
+echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
+echo -e "${BLUE}#####           CHECK PACKAGE FILES (PYTHON)            #####${ENDCOLOR}"
+echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
+echo -e "${BLUE}#############################################################${ENDCOLOR}"
+
 VIRTUAL_ENVIRONMENT_DIRECTORY="/workspaces/app/.venv/bin"
-
-# TOOL : yamllint
-
-if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/yamllint" ]; then
-
-    echo -e "\n${YELLOW}> YAML Lint.${ENDCOLOR}"
-    yamllint /workspaces/app/src/
-
-    if [ "$?" -eq 0 ]; then
-        echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
-    fi
-
-fi
 
 # TOOL : pyright
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pyright" ]; then
 
     echo -e "\n${YELLOW}> Pyright / Pylance.${ENDCOLOR}"
-    result=$(pyright /workspaces/app/src)
+    result=$(pyright $PACKAGE_PATH)
 
     if [ "$?" -eq 0 ]; then
         echo -e "${GREEN}${BOLD}Success: $result${ENDCOLOR}"
@@ -47,7 +40,7 @@ fi
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pylint" ]; then
     echo -e "\n${YELLOW}> Pylint.${ENDCOLOR}"
-    pylint /workspaces/app/src --score=false --jobs=10
+    pylint $PACKAGE_PATH --score=false --jobs=10
 
     if [ "$?" -eq 0 ]; then
         echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
@@ -58,7 +51,7 @@ fi
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/flake8" ]; then
     echo -e "\n${YELLOW}> Flake8.${ENDCOLOR}"
-    flake8 /workspaces/app/src
+    flake8 $PACKAGE_PATH
 
     if [ "$?" -eq 0 ]; then
         echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
@@ -69,14 +62,14 @@ fi
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/mypy" ]; then
     echo -e "\n${YELLOW}> Mypy.${ENDCOLOR}"
-    mypy /workspaces/app/src
+    mypy $PACKAGE_PATH
 fi
 
 # TOOL : yapf
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/yapf" ]; then
     echo -e "\n${YELLOW}> Yapf.${ENDCOLOR}"
-    yapf --diff /workspaces/app/src --recursive
+    yapf --diff $PACKAGE_PATH --recursive
 
     if [ "$?" -eq 0 ]; then
         echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
@@ -87,14 +80,5 @@ fi
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/black" ]; then
     echo -e "\n${YELLOW}> Black.${ENDCOLOR}"
-    black /workspaces/app/src
+    black --check $PACKAGE_PATH
 fi
-
-# TOOL : pytest
-
-if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pytest" ]; then
-    echo -e "\n${YELLOW}> Pytest.${ENDCOLOR}\n"
-    pytest ./tests/test_*.py -v -s -n auto --no-header --no-summary
-fi
-
-echo -e "\n${BLUE}All verifications are done.${ENDCOLOR}\n"

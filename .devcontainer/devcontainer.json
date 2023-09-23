@@ -1,7 +1,7 @@
 {
-	"name": "Python 3",
-	"workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/app,type=bind",
-	"workspaceFolder": "/workspaces/app",
+    "name": "Python 3",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/app,type=bind",
+    "workspaceFolder": "/workspaces/app",
     "mounts": [
         "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,readonly"
     ],
@@ -11,18 +11,18 @@
         "--env-file",
         ".devcontainer/user.env"
     ],
-	"build": {
-		"dockerfile": "Dockerfile",
-		"context": "..",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
         "args": {
             "VARIANT": "3.11-bullseye",
-			"NODE_VERSION": "lts/*"
-		}
+            "NODE_VERSION": "lts/*"
+        }
     },
     "customizations": {
         "vscode": {
-			"extensions": [
-				"ms-python.python",
+            "extensions": [
+                "ms-python.python",
                 "ms-python.vscode-pylance",
                 "ms-python.pylint",
                 "sanaajani.taskrunnercode"
@@ -58,8 +58,8 @@
                 "editor.formatOnSave": true,
                 "editor.defaultFormatter": null
             }
-		}
+        }
     },
-    "postCreateCommand": "sudo chmod +x /workspaces/app/.devcontainer/install.sh && /workspaces/app/.devcontainer/install.sh",
-	"remoteUser": "vscode"
+    "postCreateCommand": "sudo chmod +x $WORKSPACE_PATH/.devcontainer/install.sh && $WORKSPACE_PATH/.devcontainer/install.sh",
+    "remoteUser": "vscode"
 }
