@@ -124,7 +124,11 @@ sudo chmod +x $WORKSPACE_PATH/.devcontainer/check-post-install.sh
 $WORKSPACE_PATH/.devcontainer/check-post-install.sh
 
 cd $WORKSPACE_PATH
-pre-commit install
+
+if [ "$USE_PRECOMMIT" = 1 ];
+then
+    pre-commit install
+fi
 
 cat <<EOF >>~/.vimrc
 filetype on          " Détection du type de fichier
@@ -151,8 +155,11 @@ source /usr/share/bash-completion/completions/git
 export GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWSTASHSTATE=1 GIT_PS1_SHOWUNTRACKEDFILES=1
 export GIT_PS1_SHOWUPSTREAM=verbose GIT_PS1_DESCRIBE_STYLE=branch GIT_PS1_SHOWCOLORHINTS=1
 export GIT_PS1_HIDE_IF_PWD_IGNORED=1
-PS1='\[\e[33;52m\][\t] \${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\e[1;33m\]\$(__git_ps1 " (%s)")\[\e[0;37m\] \$\[\033[00m\] '
+PS1='\[\e[33;52m\][\t] \[\033[01;34m\]\w\[\e[1;32m\]\$(__git_ps1 " (%s)")\[\e[0;37m\] \$\[\033[00m\] '
 
 export PATH="$WORKSPACE_PATH/tools:$PATH"
 export PACKAGE_PATH="$WORKSPACE_PATH/src/$PACKAGE_NAME"
 EOF
+
+echo -e "\n${YELLOW}Installation is finished!${ENDCOLOR}"
+echo -e "${YELLOW}You can close this terminal and re-open a new terminal!${ENDCOLOR}\n"

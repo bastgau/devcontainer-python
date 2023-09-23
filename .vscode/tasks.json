@@ -4,16 +4,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Tools: Update all Python Packages",
-            "type": "shell",
-            "command": "${workspaceFolder}/tools/upgrade-all-python-package.sh",
-            "problemMatcher": [],
-            "group": {
-                "kind": "none",
-                "isDefault": true
-            }
-        },
-        {
             "label": "CI/CD: Build Package",
             "type": "shell",
             "command": "${workspaceFolder}/tools/execute-build-package.sh",
@@ -57,6 +47,16 @@
             "label": "Tools: Purge Cache",
             "type": "shell",
             "command": "${workspaceFolder}/tools/purge-cache.sh",
+            "problemMatcher": [],
+            "group": {
+                "kind": "none",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Tools: Update all Python Packages",
+            "type": "shell",
+            "command": "${workspaceFolder}/tools/upgrade-all-python-package.sh",
             "problemMatcher": [],
             "group": {
                 "kind": "none",

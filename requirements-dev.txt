@@ -1,9 +1,0 @@
-pylint
-
-# yamllint
-# pytest
-# mypy
-# flake8
-# pyright
-# black
-# yapf
