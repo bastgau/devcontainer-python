@@ -6,7 +6,7 @@ repos:
       - id: yamllint
         name: yamllint
         entry: /workspaces/app/.venv/bin/yamllint
-        language: python
+        language: system
         types: [python]
         files: ^.*\.(yml|yaml)$
 
@@ -24,7 +24,7 @@ repos:
       - id: pylint
         name: pylint
         entry: /workspaces/app/.venv/bin/pylint
-        language: python
+        language: system
         types: [python]
         files: ^.*\.py$
 
@@ -33,7 +33,7 @@ repos:
       - id: flake8
         name: flake8
         entry: /workspaces/app/.venv/bin/flake8
-        language: python
+        language: system
         types: [python]
         files: ^.*\.py$
 
@@ -42,7 +42,7 @@ repos:
       - id: mypy
         name: mypy
         entry: /workspaces/app/.venv/bin/mypy
-        language: python
+        language: system
         types: [python]
         files: ^.*\.py$
 
@@ -51,7 +51,7 @@ repos:
       - id: yapf
         name: yapf
         entry: /workspaces/app/.venv/bin/yapf
-        language: python
+        language: system
         types: [python]
         files: ^.*\.py$
 
