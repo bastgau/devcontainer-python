@@ -58,7 +58,19 @@
                 "python.testing.pytestEnabled": true,
                 "editor.formatOnSaveMode": "file",
                 "editor.formatOnSave": true,
-                "editor.defaultFormatter": "eeyore.yapf"
+                "editor.defaultFormatter": "eeyore.yapf",
+                "mypy-type-checker.args": [
+                    "--no-color-output",
+                    "--no-error-summary",
+                    "--show-absolute-path",
+                    "--show-column-numbers",
+                    "--show-error-code",
+                    "--no-pretty",
+                    "--follow-imports=silent",
+                    "--show-column-numbers",
+                    "--no-pretty",
+                    "--show-error-end"
+                ]
             }
         }
     },

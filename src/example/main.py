@@ -8,7 +8,7 @@ totos: Dict[str, str] = {
     "un": "one",
     "deux": "two",
     "trois": "three",
-    "eee": "eee",
+    "eee": "eede",
 }
 
 print(totos)
