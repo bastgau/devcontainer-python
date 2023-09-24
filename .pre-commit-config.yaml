@@ -1,6 +1,5 @@
 ---
 repos:
-
   - repo: local
     hooks:
       - id: yamllint
@@ -61,3 +60,4 @@ repos:
       - id: check-json
       - id: no-commit-to-branch
         args: [--branch, master, --branch, main]
+

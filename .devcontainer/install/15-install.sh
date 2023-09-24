@@ -25,11 +25,14 @@ then
         if [ "$defaultFormatter" = "eeyore.yapf" ];
         then
         formater_precommit=$(cat <<EOF
-- repo: https://github.com/google/yapf
-    rev: v0.40.1
-    hooks:
-      - id: yapf
-        args: ["--diff"]
+- repo: local
+  hooks:
+    - id: yapf
+      name: yapf
+      entry: /workspaces/app/.venv/bin/yapf
+      language: system
+      types: [python]
+      files: ^.*\.py$
 EOF
 )
         fi
@@ -37,40 +40,67 @@ EOF
 cat <<EOF >>$WORKSPACE_PATH/.pre-commit-config.yaml
 ---
 repos:
-  - repo: https://github.com/adrienverge/yamllint
-    rev: v1.32.0
+  - repo: local
     hooks:
       - id: yamllint
-        args: []
-  - repo: https://github.com/PyCQA/flake8
-    rev: 6.0.0
-    hooks:
-      - id: flake8
-        args: []
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.4.1
-    hooks:
-      - id: mypy
-        args: []
-  - repo: https://github.com/pylint-dev/pylint
-    rev: v2.17.4
-    hooks:
-      - id: pylint
-        args: []
-  - repo: https://github.com/necaris/pre-commit-pyright
-    rev: '1.1.53'
+        name: yamllint
+        entry: /workspaces/app/.venv/bin/yamllint
+        language: system
+        types: [python]
+        files: ^.*\.(yml|yaml)$
+
+  - repo: local
     hooks:
       - id: pyright
-  $formater_precommit
+        name: pyright
+        entry: /workspaces/app/.venv/bin/pyright
+        language: system
+        types: [python]
+        files: ^.*\.py$
+
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: /workspaces/app/.venv/bin/pylint
+        language: system
+        types: [python]
+        files: ^.*\.py$
+
+  - repo: local
+    hooks:
+      - id: flake8
+        name: flake8
+        entry: /workspaces/app/.venv/bin/flake8
+        language: system
+        types: [python]
+        files: ^.*\.py$
+
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        entry: /workspaces/app/.venv/bin/mypy
+        language: system
+        types: [python]
+        files: ^.*\.py$
+
+  - repo: local
+    hooks:
+      - id: yapf
+        name: yapf
+        entry: /workspaces/app/.venv/bin/yapf
+        language: system
+        types: [python]
+        files: ^.*\.py$
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.3.0
     hooks:
       - id: check-json
-      # - id: check-yaml
-      # - id: mixed-line-ending
-      #  args: ['--fix=lf']
       - id: no-commit-to-branch
         args: [--branch, master, --branch, main]
+
 EOF
 
     echo -e "Done.\n"
