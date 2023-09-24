@@ -78,16 +78,23 @@ EOF
     then
         echo -e "${GREEN}> Initialize PIP Manager (requirements-test.txt).${ENDCOLOR}\n"
 
-        unittest_active=$(jq -r '.customizations.vscode.settings."python.testing.pytestEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
-
         unittest_package=""
         coverage_package=""
 
-        if [ "$unittest_active" = "true" ];
+        active=$(jq -r '.customizations.vscode.settings."python.testing.pytestEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+
+        if [ "$active" = "true" ];
         then
             unittest_package="pytest-xdist"
+        fi
+
+        active=$(jq -r '.customizations.vscode.settings."python.testing.coverageEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+
+        if [ "$active" = "true" ];
+        then
             coverage_package="coverage"
         fi
+
 
 cat <<EOF >>$WORKSPACE_PATH/requirements-test.txt
 $unittest_package
