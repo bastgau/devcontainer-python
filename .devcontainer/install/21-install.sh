@@ -1,28 +1,19 @@
 #!/bin/bash
 
-source $WORKSPACE_PATH/.venv/bin/activate
-sleep 0.5
-
-RED="\e[31m"
-GREEN="\e[32m"
-BLUE="\e[34m"
-YELLOW="\e[33m"
-BOLD="\e[1m"
-
-ENDCOLOR="\e[0m"
-
-clear
-
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-echo -e "${BLUE}#####                  BUILD PACKAGE                    #####${ENDCOLOR}"
+echo -e "${BLUE}#####     GENERATE OTHER CONFIGURATION FILES            #####${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
 echo -e "\n${RED}Not yet implemented${ENDCOLOR}\n"
 
-# echo -e "\n${YELLOW}> Install build library.${ENDCOLOR}"
-# python3 -m pip install --upgrade build
+# if [ ! -d $WORKSPACE_FOLDER/src/$PACKAGE_NAME ];
+# then
+#     mkdir -p $WORKSPACE_FOLDER/src/$PACKAGE_NAME
+# fi
 
-# echo -e "\n${YELLOW}> Build project $PACKAGE_NAME.${ENDCOLOR}"
-# python3 -m build
+# if [ ! -d $UNIT_TESTING_PATH ];
+# then
+#     mkdir -p $UNIT_TESTING_PATH
+# fi

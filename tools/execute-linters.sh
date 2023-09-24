@@ -25,14 +25,14 @@ VIRTUAL_ENVIRONMENT_DIRECTORY="/workspaces/app/.venv/bin"
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pyright" ]; then
     echo -e "\n${YELLOW}> Pyright / Pylance.${ENDCOLOR}\n"
-    pyright $PACKAGE_PATH
+    pyright $SOURCE_PATH
 fi
 
 # TOOL : pylint
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pylint" ]; then
     echo -e "\n${YELLOW}> Pylint.${ENDCOLOR}\n"
-    pylint $PACKAGE_PATH --score=false --jobs=10
+    pylint $SOURCE_PATH --score=false --jobs=10
 
     if [ "$?" -eq 0 ]; then
         echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
@@ -43,7 +43,7 @@ fi
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/flake8" ]; then
     echo -e "\n${YELLOW}> Flake8.${ENDCOLOR}\n"
-    flake8 $PACKAGE_PATH
+    flake8 $SOURCE_PATH
 
     if [ "$?" -eq 0 ]; then
         echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
@@ -54,14 +54,14 @@ fi
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/mypy" ]; then
     echo -e "\n${YELLOW}> Mypy.${ENDCOLOR}\n"
-    mypy $PACKAGE_PATH
+    mypy $SOURCE_PATH
 fi
 
 # TOOL : yapf
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/yapf" ]; then
     echo -e "\n${YELLOW}> Yapf.${ENDCOLOR}\n"
-    result=$(yapf --diff $PACKAGE_PATH --recursive | grep "(reformatted)" | grep "+++")
+    result=$(yapf --diff $SOURCE_PATH --recursive | grep "(reformatted)" | grep "+++")
 
     if [ "$result" = "" ]; then
         echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
@@ -75,7 +75,7 @@ fi
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/black" ]; then
     echo -e "\n${YELLOW}> Black.${ENDCOLOR}\n"
-    black --check $PACKAGE_PATH
+    black --check $SOURCE_PATH
 fi
 
 echo -e "\n${BLUE}All verifications are done.${ENDCOLOR}\n"

@@ -10,7 +10,7 @@ source $WORKSPACE_PATH/.venv/bin/activate
 
 cd $WORKSPACE_PATH
 
-if [ "$USE_PRECOMMIT" = 1 ];
+if [ "$USE_PRE_COMMIT" = 1 ];
 then
 
     if [ ! -f "$WORKSPACE_PATH/.pre-commit-config.yaml" ];

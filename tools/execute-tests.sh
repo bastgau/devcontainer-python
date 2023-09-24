@@ -80,12 +80,12 @@ fi
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pytest" ]; then
     echo -e "\n${YELLOW}> Pytest.${ENDCOLOR}\n"
-    pytest $WORKSPACE_PATH/tests/*/test_*.py $WORKSPACE_PATH/tests/test_*.py -v -s -n auto
+    pytest $WORKSPACE_PATH/tests/*/test_*.py -v -s -n auto
 fi
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/coverage" ]; then
     echo -e "\n${YELLOW}> Coverage Analysis.${ENDCOLOR}\n"
-    coverage run -m pytest $WORKSPACE_PATH/tests/*/test_*.py $WORKSPACE_PATH/tests/test_*.py -q
+    coverage run -m pytest $WORKSPACE_PATH/tests/*/test_*.py -q
 
     echo -e "\n${YELLOW}> Coverage Report.${ENDCOLOR}\n"
     coverage report -m

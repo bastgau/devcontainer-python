@@ -17,8 +17,7 @@ echo -e "${BLUE}#####                                                   #####${E
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
 echo -e "\n${YELLOW}> Remove __pycache__ files.${ENDCOLOR}"
-find $SOURCE_PATH -type d -iregex ".*__pycache__.*" -exec rm -rf {} +
-find $WORKSPACE_PATH/tests -type d -iregex ".*__pycache__.*" -exec rm -rf {} +
+find $WORKSPACE_PATH -type d -iregex ".*__pycache__.*" -exec rm -rf {} +
 echo -e "Done."
 
 echo -e "\n${YELLOW}> Remove mypy_cache files.${ENDCOLOR}"

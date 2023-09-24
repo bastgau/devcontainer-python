@@ -46,7 +46,6 @@ export GIT_PS1_HIDE_IF_PWD_IGNORED=1
 PS1='\[\e[33;52m\][\t] \[\033[01;34m\]\w\[\e[1;32m\]\$(__git_ps1 " (%s)")\[\e[0;37m\] \$\[\033[00m\] '
 
 export PATH="$WORKSPACE_PATH/tools:\$PATH"
-export PACKAGE_PATH="$WORKSPACE_PATH/src/$PACKAGE_NAME"
 
 # [END]:GENERATED_FROM_$script_name
 EOF

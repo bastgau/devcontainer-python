@@ -51,7 +51,7 @@ then
 
         precommit_package=""
 
-        if [ "$USE_PRECOMMIT" = 1 ];
+        if [ "$USE_PRE_COMMIT" = 1 ];
         then
             precommit_package="pre-commit"
         fi
@@ -85,7 +85,7 @@ EOF
 
         if [ "$unittest_active" = "true" ];
         then
-            unittest_package="pytest"
+            unittest_package="pytest-xdist"
             coverage_package="coverage"
         fi
 

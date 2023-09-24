@@ -1,8 +1,0 @@
-yamllint
-pyright
-pylint
-flake8
-mypy
-yapf
-pre-commit
-pandas-stubs
