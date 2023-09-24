@@ -81,14 +81,17 @@ EOF
         unittest_active=$(jq -r '.customizations.vscode.settings."python.testing.pytestEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
 
         unittest_package=""
+        coverage_package=""
 
         if [ "$unittest_active" = "true" ];
         then
             unittest_package="pytest"
+            coverage_package="coverage"
         fi
 
 cat <<EOF >>$WORKSPACE_PATH/requirements-test.txt
 $unittest_package
+$coverage_package
 EOF
 
         echo -e "PIP configuration file was created (requirements-test.txt).\n"

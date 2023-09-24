@@ -24,22 +24,14 @@ VIRTUAL_ENVIRONMENT_DIRECTORY="/workspaces/app/.venv/bin"
 # TOOL : pyright
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pyright" ]; then
-
-    echo -e "\n${YELLOW}> Pyright / Pylance.${ENDCOLOR}"
-    result=$(pyright $WORKSPACE_PATH/tests)
-
-    if [ "$?" -eq 0 ]; then
-        echo -e "${GREEN}${BOLD}Success: $result${ENDCOLOR}"
-    else
-        echo -e $result
-    fi
-
+    echo -e "\n${YELLOW}> Pyright / Pylance.${ENDCOLOR}\n"
+    pyright $WORKSPACE_PATH/tests
 fi
 
 # TOOL : pylint
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pylint" ]; then
-    echo -e "\n${YELLOW}> Pylint.${ENDCOLOR}"
+    echo -e "\n${YELLOW}> Pylint.${ENDCOLOR}\n"
     pylint $WORKSPACE_PATH/tests --score=false --jobs=10
 
     if [ "$?" -eq 0 ]; then
@@ -50,7 +42,7 @@ fi
 # TOOL : flake8
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/flake8" ]; then
-    echo -e "\n${YELLOW}> Flake8.${ENDCOLOR}"
+    echo -e "\n${YELLOW}> Flake8.${ENDCOLOR}\n"
     flake8 $WORKSPACE_PATH/tests
 
     if [ "$?" -eq 0 ]; then
@@ -61,14 +53,14 @@ fi
 # TOOL : mypy
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/mypy" ]; then
-    echo -e "\n${YELLOW}> Mypy.${ENDCOLOR}"
+    echo -e "\n${YELLOW}> Mypy.${ENDCOLOR}\n"
     mypy $WORKSPACE_PATH/tests
 fi
 
 # TOOL : yapf
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/yapf" ]; then
-    echo -e "\n${YELLOW}> Yapf.${ENDCOLOR}"
+    echo -e "\n${YELLOW}> Yapf.${ENDCOLOR}\n"
     result=$(yapf --diff $WORKSPACE_PATH/tests --recursive | grep "(reformatted)" | grep "+++")
 
     if [ "$result" = "" ]; then
@@ -81,7 +73,7 @@ fi
 
 # TOOL : black
 
-if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/black" ]; then
+if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/black\n" ]; then
     echo -e "\n${YELLOW}> Black.${ENDCOLOR}"
     $VIRTUAL_ENVIRONMENT_DIRECTORY/black --check $WORKSPACE_PATH/tests
 fi

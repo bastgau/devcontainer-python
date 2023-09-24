@@ -24,22 +24,14 @@ VIRTUAL_ENVIRONMENT_DIRECTORY="/workspaces/app/.venv/bin"
 # TOOL : pyright
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pyright" ]; then
-
-    echo -e "\n${YELLOW}> Pyright / Pylance.${ENDCOLOR}"
-    result=$(pyright $PACKAGE_PATH)
-
-    if [ "$?" -eq 0 ]; then
-        echo -e "${GREEN}${BOLD}Success: $result${ENDCOLOR}"
-    else
-        echo -e $result
-    fi
-
+    echo -e "\n${YELLOW}> Pyright / Pylance.${ENDCOLOR}\n"
+    pyright $PACKAGE_PATH
 fi
 
 # TOOL : pylint
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pylint" ]; then
-    echo -e "\n${YELLOW}> Pylint.${ENDCOLOR}"
+    echo -e "\n${YELLOW}> Pylint.${ENDCOLOR}\n"
     pylint $PACKAGE_PATH --score=false --jobs=10
 
     if [ "$?" -eq 0 ]; then
@@ -50,7 +42,7 @@ fi
 # TOOL : flake8
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/flake8" ]; then
-    echo -e "\n${YELLOW}> Flake8.${ENDCOLOR}"
+    echo -e "\n${YELLOW}> Flake8.${ENDCOLOR}\n"
     flake8 $PACKAGE_PATH
 
     if [ "$?" -eq 0 ]; then
@@ -61,14 +53,14 @@ fi
 # TOOL : mypy
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/mypy" ]; then
-    echo -e "\n${YELLOW}> Mypy.${ENDCOLOR}"
+    echo -e "\n${YELLOW}> Mypy.${ENDCOLOR}\n"
     mypy $PACKAGE_PATH
 fi
 
 # TOOL : yapf
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/yapf" ]; then
-    echo -e "\n${YELLOW}> Yapf.${ENDCOLOR}"
+    echo -e "\n${YELLOW}> Yapf.${ENDCOLOR}\n"
     result=$(yapf --diff $PACKAGE_PATH --recursive | grep "(reformatted)" | grep "+++")
 
     if [ "$result" = "" ]; then
@@ -82,8 +74,8 @@ fi
 # TOOL : black
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/black" ]; then
-    echo -e "\n${YELLOW}> Black.${ENDCOLOR}"
+    echo -e "\n${YELLOW}> Black.${ENDCOLOR}\n"
     black --check $PACKAGE_PATH
 fi
 
-echo -e ""
+echo -e "\n${BLUE}All verifications are done.${ENDCOLOR}\n"
