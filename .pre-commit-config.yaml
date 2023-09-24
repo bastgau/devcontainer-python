@@ -1,0 +1,40 @@
+---
+repos:
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.32.0
+    hooks:
+      - id: yamllint
+        args: []
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        args: []
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.4.1
+    hooks:
+      - id: mypy
+        args: []
+  - repo: https://github.com/pylint-dev/pylint
+    rev: v2.17.4
+    hooks:
+      - id: pylint
+        args: []
+  - repo: https://github.com/necaris/pre-commit-pyright
+    rev: '1.1.53'
+    hooks:
+      - id: pyright
+  - repo: https://github.com/google/yapf
+    rev: v0.40.1
+    hooks:
+      - id: yapf
+        args: ["--diff"]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: check-json
+      # - id: check-yaml
+      # - id: mixed-line-ending
+      #  args: ['--fix=lf']
+      - id: no-commit-to-branch
+        args: [--branch, master, --branch, main]

@@ -4,3 +4,4 @@ pylint
 flake8
 mypy
 yapf
+pre-commit
