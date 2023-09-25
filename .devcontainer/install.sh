@@ -1,10 +1,13 @@
 #!/bin/bash
 
-. "$WORKSPACE_PATH/.devcontainer/color.sh"
+. "$WORKSPACE_PATH/.devcontainer/install/color.sh"
 
 cd "$WORKSPACE_PATH/.devcontainer/install"
 
-install_files=$(ls | sort)
+install_files=$(ls [0-9][0-9]* | sort)
+count_files=$(ls [0-9][0-9]* | wc -l)
+
+echo -e "\n${BLUE} We have found $count_files installation files.${ENDCOLOR}"
 
 for install_file in $install_files; do
   if [ -f "$install_file" ];
