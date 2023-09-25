@@ -15,6 +15,9 @@ for install_file in $install_files; do
     echo -e "\n\e[104m Execute: $install_file \e[49m"
     chmod +x $install_file
     ./"$install_file"
-    read -p "Are you sure? " -n 1 -r
+    echo -e "${YELLOW}... Press any key to continue ..."
+    read -s -p " " -n 1 -r
+    echo -e "${ENDCOLOR}"
+
   fi
 done

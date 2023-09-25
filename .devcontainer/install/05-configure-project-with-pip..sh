@@ -7,7 +7,7 @@ then
 
     echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
     echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-    echo -e "${BLUE}#####     CONFIGURE PROJECT WITH PIP                    #####${ENDCOLOR}"
+    echo -e "${BLUE}#####     Configure project with PIP                    #####${ENDCOLOR}"
     echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
     echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
@@ -45,7 +45,7 @@ then
 
     echo -e "\n${GREEN}> Install dependencies with PIP (requirements.txt).${ENDCOLOR}"
     pip install -r $WORKSPACE_PATH/requirements.txt
-    echo -e "\nDone.\n"
+    echo -e "\nDone\n"
 
     if [ ! -f "$WORKSPACE_PATH/requirements-dev.txt" ];
     then
@@ -74,7 +74,7 @@ EOF
 
     echo -e "${GREEN}> Install dependencies with PIP (requirements-dev.txt).${ENDCOLOR}\n"
     pip install -r $WORKSPACE_PATH/requirements-dev.txt
-    echo -e "\nDone.\n"
+    echo -e "\nDone\n"
 
     if [ ! -f "$WORKSPACE_PATH/requirements-test.txt" ];
     then
@@ -108,7 +108,7 @@ EOF
 
     echo -e "${GREEN}> Install dependencies with PIP (requirements-test.txt).${ENDCOLOR}\n"
     pip install -r $WORKSPACE_PATH/requirements-test.txt
-    echo -e "Done.\n"
+    echo -e "Done\n"
 
 else
     echo -e "\n${YELLOW}Nothing to do.${ENDCOLOR}"

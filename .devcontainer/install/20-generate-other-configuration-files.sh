@@ -4,7 +4,7 @@
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-echo -e "${BLUE}#####     GENERATE OTHER CONFIGURATION FILES            #####${ENDCOLOR}"
+echo -e "${BLUE}#####     Generate other configuration files            #####${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
@@ -28,7 +28,7 @@ set mouse-=a
 set backspace=indent,eol,start
 EOF
 
-echo -e "Done.\n"
+echo -e "Done\n"
 
 echo -e "${GREEN}> Generate file for .bashrc.${ENDCOLOR}\n"
 
@@ -52,4 +52,4 @@ export PATH="$WORKSPACE_PATH/tools:\$PATH"
 # [END]:GENERATED_FROM_$script_name
 EOF
 
-echo -e "Done.\n"
+echo -e "Done\n"

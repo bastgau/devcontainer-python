@@ -4,7 +4,7 @@
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-echo -e "${BLUE}#####     PREPARE VENV / CONFIGURE GIT                  #####${ENDCOLOR}"
+echo -e "${BLUE}#####     Prepare VENV / Configure Git                  #####${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
@@ -34,7 +34,7 @@ cat <<EOF >$WORKSPACE_PATH/.vscode/settings.json
 EOF
 fi
 
-echo -e "Done."
+echo -e "Done"
 
 echo -e "\n${GREEN}> Configure Git.${ENDCOLOR}\n"
 
@@ -46,4 +46,4 @@ git config --global pull.rebase true
 git config --global user.name "$GIT_USERNAME"
 git config --global user.email "$GIT_EMAIL"
 
-echo -e "Done.\n"
+echo -e "Done\n"

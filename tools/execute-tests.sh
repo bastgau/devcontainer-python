@@ -91,4 +91,4 @@ if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/coverage" ]; then
     coverage report -m
 fi
 
-echo -e "\n${BLUE}All verifications are done.${ENDCOLOR}\n"
+echo -e "\n${BLUE}All verifications are Done${ENDCOLOR}\n"

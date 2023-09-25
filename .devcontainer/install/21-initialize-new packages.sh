@@ -4,13 +4,13 @@
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-echo -e "${BLUE}#####     INITIALIZE NEW PACKAGES                       #####${ENDCOLOR}"
+echo -e "${BLUE}#####     Initialize new packages                       #####${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
 mkdir -p $SOURCE_PATH
 
-if [ "$(ls -A "$SOURCE_PATH")" ]; then
+if [ "$(ls -A "$SOURCE_PATH" | wc -l)" -ge 1 ]; then
     echo -e "\n${YELLOW}Nothing to do.${ENDCOLOR}"
 else
 

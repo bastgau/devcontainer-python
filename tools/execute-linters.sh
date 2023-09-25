@@ -78,4 +78,4 @@ if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/black" ]; then
     black --check $SOURCE_PATH
 fi
 
-echo -e "\n${BLUE}All verifications are done.${ENDCOLOR}\n"
+echo -e "\n${BLUE}All verifications are Done${ENDCOLOR}\n"

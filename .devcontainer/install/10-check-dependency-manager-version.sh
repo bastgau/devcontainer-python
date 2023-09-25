@@ -4,7 +4,7 @@
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-echo -e "${BLUE}#####     CHECK DEPENDENCY MANAGER VERSION              #####${ENDCOLOR}"
+echo -e "${BLUE}#####     Check dependency manager version              #####${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 

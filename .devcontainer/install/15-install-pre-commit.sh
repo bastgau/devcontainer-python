@@ -4,7 +4,7 @@
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-echo -e "${BLUE}#####     PRE-COMMIT INSTALLATION                       #####${ENDCOLOR}"
+echo -e "${BLUE}#####     Install pre-commit                            #####${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
@@ -105,7 +105,7 @@ repos:
 
 EOF
 
-    echo -e "Done.\n"
+    echo -e "Done\n"
 
     fi
 

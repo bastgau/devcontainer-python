@@ -31,15 +31,15 @@ then
 
     echo -e "${GREEN}> Update dependencies with PIP (requirements.txt).${ENDCOLOR}\n"
     pip install -r /workspaces/app/requirements.txt --upgrade
-    echo -e "Done.\n"
+    echo -e "Done\n"
 
     echo -e "${GREEN}> Update dependencies with PIP (requirements-dev.txt).${ENDCOLOR}\n"
     pip install -r /workspaces/app/requirements-dev.txt --upgrade
-    echo -e "Done.\n"
+    echo -e "Done\n"
 
     echo -e "${GREEN}> Update dependencies with PIP (requirements-test.txt).${ENDCOLOR}\n"
     pip install -r /workspaces/app/requirements-test.txt --upgrade
-    echo -e "Done.\n"
+    echo -e "Done\n"
 
 fi
 

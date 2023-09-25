@@ -32,7 +32,7 @@ if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/yamllint" ]; then
     $VIRTUAL_ENVIRONMENT_DIRECTORY/yamllint $SOURCE_PATH
 
     if [ "$?" -eq 0 ]; then
-        echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}\n"
+        echo -e "\n${GREEN}${BOLD}Success: no issues found${ENDCOLOR}\n"
     fi
 
 fi
