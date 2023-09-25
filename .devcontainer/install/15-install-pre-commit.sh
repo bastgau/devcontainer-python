@@ -105,7 +105,7 @@ repos:
 
 EOF
 
-    echo -e "Done\n"
+    echo -e "Done"
 
     fi
 
