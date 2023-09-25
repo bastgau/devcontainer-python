@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. "$WORKSPACE_PATH/.devcontainer/install/color.sh"
+
 if [ "$DEPENDENCY_MANAGER" = "PIP" ];
 then
 

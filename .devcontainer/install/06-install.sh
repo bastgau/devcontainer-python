@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. "$WORKSPACE_PATH/.devcontainer/install/color.sh"
+
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#####     CONFIGURE PROJECT WITH POETRY                 #####${ENDCOLOR}"

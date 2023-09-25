@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. "$WORKSPACE_PATH/.devcontainer/install/color.sh"
+
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#####     PREPARE VENV / CONFIGURE GIT                  #####${ENDCOLOR}"
@@ -23,6 +25,15 @@ then
 fi
 
 ln -s $WORKSPACE_PATH/.venv/lib /home/vscode/.local/
+
+if [ ! -f $WORKSPACE_PATH/.vscode/settings.json ];
+then
+cat <<EOF >$WORKSPACE_PATH/.vscode/settings.json
+{
+}
+EOF
+fi
+
 echo -e "Done."
 
 echo -e "\n${GREEN}> Configure Git.${ENDCOLOR}\n"
