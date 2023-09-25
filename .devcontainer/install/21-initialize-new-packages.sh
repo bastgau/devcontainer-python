@@ -10,13 +10,6 @@ echo -e "${BLUE}#############################################################${E
 
 mkdir -p $SOURCE_PATH
 
-pytest_enabled=$(jq -r '.customizations.vscode.settings."python.testing.pytestEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
-
-if [ "$pytest_enabled" = "true" ];
-then
-    mkdir -p $UNIT_TESTING_PATH
-fi
-
 if [ "$(ls -A "$SOURCE_PATH" | wc -l)" -ge 1 ]; then
     echo -e "\n${YELLOW}Nothing to do.${ENDCOLOR}"
 else
@@ -86,30 +79,6 @@ import $package_name.application as app
 if __name__ == "__main__":
     app.run()
 EOF
-
-                    pytest_enabled=$(jq -r '.customizations.vscode.settings."python.testing.pytestEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
-
-                    if [ "$pytest_enabled" = "true" ];
-                    then
-
-                        mkdir -p "$UNIT_TESTING_PATH/tests_$package_name"
-                        touch "$UNIT_TESTING_PATH/tests_$package_name/__init__.py"
-
-cat <<EOF >"$UNIT_TESTING_PATH/tests_$package_name/test_application.py"
-""" File : tests/tests_$package_name/test_application.py """
-
-import $package_name.application as app
-
-
-def test_hello() -> None:  # pylint: disable=unused-variable
-    """..."""
-
-    assert app.hello() == "Hello John Doe! How are you today?"
-    assert app.hello("Jane Doe") == "Hello Jane Doe! How are you today?"
-EOF
-
-                    fi
-
                     quantity=$((quantity + 1))
 
                 fi
