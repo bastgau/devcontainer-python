@@ -7,9 +7,7 @@
     ],
     "runArgs": [
         "--env-file",
-        ".devcontainer/project.env",
-        "--env-file",
-        ".devcontainer/user.env"
+        ".devcontainer/project.env"
     ],
     "build": {
         "dockerfile": "Dockerfile",
