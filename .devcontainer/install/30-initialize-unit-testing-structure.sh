@@ -35,6 +35,8 @@ else
 cat <<EOF >"$UNIT_TESTING_PATH/tests_$package_directory/test_application.py"
 """ File : tests/tests_$package_directory/test_application.py """
 
+from typing import Any
+
 import $package_directory.application as app
 
 
@@ -43,6 +45,15 @@ def test_hello() -> None:  # pylint: disable=unused-variable
 
     assert app.hello() == "Hello John Doe! How are you today?"
     assert app.hello("Jane Doe") == "Hello Jane Doe! How are you today?"
+
+
+def test_run(capsys: Any) -> None:  # pylint: disable=unused-variable
+    """..."""
+
+    app.run()
+    capured = capsys.readouterr()
+    assert capured.out == "Hello John Doe! How are you today?\n"
+
 EOF
             echo -e "\nUnit Testing directory for 'tests_$package_directory' created"
             quantity=$((quantity + 1))
