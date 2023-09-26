@@ -4,29 +4,10 @@
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-echo -e "${BLUE}#####     Prepare VENV / Configure Git                  #####${ENDCOLOR}"
+echo -e "${BLUE}#####     Configure Git                                 #####${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
-echo -e "\n${GREEN}> Configure virtual environment.${ENDCOLOR}\n"
-
-sudo chgrp vscode $WORKSPACE_PATH/.venv
-sudo chown vscode $WORKSPACE_PATH/.venv
-
-python3 -m venv $WORKSPACE_PATH/.venv
-PATH="$WORKSPACE_PATH/.venv/bin:$PATH"
-
-mkdir -p /home/vscode/.local/
-mkdir -p $WORKSPACE_PATH/.venv/lib
-
-if [ -e /home/vscode/.local/lib ];
-then
-    rm -rf /home/vscode/.local/lib
-fi
-
-ln -s $WORKSPACE_PATH/.venv/lib /home/vscode/.local/
-
-echo -e "Done"
 
 echo -e "\n${GREEN}> Configure Git.${ENDCOLOR}\n"
 
