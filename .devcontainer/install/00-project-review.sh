@@ -44,4 +44,20 @@ else
     echo -e "✖️ Code coverage"
 fi
 
+if [ "$DEPENDENCY_MANAGER" != "pip" ] && [ "$DEPENDENCY_MANAGER" != "poetry" ]; then
+    echo -e "\n${RED}No correct packaging and dependency manager is configured.${ENDCOLOR}"
+    echo -e "${RED}Only 'pip' and 'poetry' managers are supported.${ENDCOLOR}"
+    STOP=true
+fi
+
+if [ "$FORMATTER" != "eeyore.yapf" ] && [ "$FORMATTER" != "ms-python.black-formatter" ]; then
+    echo -e "\n${RED}No correct formatter is configured.${ENDCOLOR}"
+    echo -e "${RED}Only 'eeyore.yapf' and 'ms-python.black-formatter' formaters are supported.${ENDCOLOR}"
+    STOP=true
+fi
+
+if [ "STOP" = "true" ]; then
+    exit 1
+fi
+
 echo -e ""

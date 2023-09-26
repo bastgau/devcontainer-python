@@ -14,9 +14,15 @@ for install_file in $install_files; do
         echo -e "\n\e[104m Execute: $install_file \e[49m"
         chmod +x $install_file
         ./"$install_file"
-        echo -e "${YELLOW}... Press any key to continue ..."
-        read -s -p " " -n 1 -r
-        echo -e "${ENDCOLOR}"
+
+        if [ "$?" -ge 1 ]; then
+            exit 1
+        else
+            echo -e "${YELLOW}... Press any key to continue ..."
+            read -s -p " " -n 1 -r
+            echo -e "${ENDCOLOR}"
+        fi
+
     fi
 done
 

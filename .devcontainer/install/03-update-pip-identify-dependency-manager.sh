@@ -22,6 +22,7 @@ if [ "$DEPENDENCY_MANAGER"  != "" ]; then
 fi
 
 if [ "$DEPENDENCY_MANAGER" != "pip" ] && [ "$DEPENDENCY_MANAGER" != "poetry" ]; then
-    echo -e "${RED}> No packaging and dependency manager was configured.${ENDCOLOR}\n"
+    echo -e "${RED}> No correct packaging and dependency manager was configured.${ENDCOLOR}"
+    echo -e "${RED}> Only pip and poetry manager are supported.${ENDCOLOR}\n"
     exit 1
 fi
