@@ -8,8 +8,7 @@ echo -e "${BLUE}#####     Configure project with Poetry                 #####${E
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
-if [ "$DEPENDENCY_MANAGER" = "POETRY" ];
-then
+if [ "$DEPENDENCY_MANAGER" = "POETRY" ]; then
 
     source $WORKSPACE_PATH/.venv/bin/activate
 
@@ -17,8 +16,7 @@ then
     curl -sSL https://install.python-poetry.org | python3 -
     poetry completions bash >> ~/.bash_completion
 
-    if [ ! -f "pyproject.toml" ];
-    then
+    if [ ! -f "pyproject.toml" ]; then
         poetry init
     fi
 

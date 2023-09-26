@@ -10,14 +10,15 @@ count_files=$(ls [0-9][0-9]* | wc -l)
 echo -e "\n${BLUE} We have found $count_files installation files.${ENDCOLOR}"
 
 for install_file in $install_files; do
-  if [ -f "$install_file" ];
-  then
-    echo -e "\n\e[104m Execute: $install_file \e[49m"
-    chmod +x $install_file
-    ./"$install_file"
-    echo -e "${YELLOW}... Press any key to continue ..."
-    read -s -p " " -n 1 -r
-    echo -e "${ENDCOLOR}"
-
-  fi
+    if [ -f "$install_file" ]; then
+        echo -e "\n\e[104m Execute: $install_file \e[49m"
+        chmod +x $install_file
+        ./"$install_file"
+        echo -e "${YELLOW}... Press any key to continue ..."
+        read -s -p " " -n 1 -r
+        echo -e "${ENDCOLOR}"
+    fi
 done
+
+echo -e "🎉 ${YELLOW}Installation is finished!${ENDCOLOR}"
+echo -e "🎉 ${YELLOW}You can close this terminal and re-open a new terminal!${ENDCOLOR}\n"

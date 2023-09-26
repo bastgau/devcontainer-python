@@ -2,12 +2,11 @@
 
 . "$WORKSPACE_PATH/.devcontainer/install/color.sh"
 
-if [ "$DEPENDENCY_MANAGER" = "PIP" ];
-then
+if [ "$DEPENDENCY_MANAGER" = "PIP" ]; then
 
     echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
     echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-    echo -e "${BLUE}#####     Configure project with PIP                    #####${ENDCOLOR}"
+    echo -e "${BLUE}#####     Configure project with pip                    #####${ENDCOLOR}"
     echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
     echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
@@ -19,42 +18,36 @@ then
 
     formatter_package=""
 
-    if [ "$defaultFormatter" = "ms-python.black-formatter" ];
-    then
+    if [ "$defaultFormatter" = "ms-python.black-formatter" ]; then
         formatter_package="black"
     fi
 
-    if [ "$defaultFormatter" = "eeyore.yapf" ];
-    then
+    if [ "$defaultFormatter" = "eeyore.yapf" ]; then
         formatter_package="yapf"
     fi
 
-    if [ "$defaultFormatter" = "null" ];
-    then
+    if [ "$defaultFormatter" = "null" ]; then
         echo -e "No Python formatter specified."
     else
         echo -e "Python formatter found is : '$defaultFormatter'"
     fi
 
-    if [ ! -f "$WORKSPACE_PATH/requirements.txt" ];
-    then
-        echo -e "\n${GREEN}> Initialize PIP Manager (requirements.txt).${ENDCOLOR}\n"
+    if [ ! -f "$WORKSPACE_PATH/requirements.txt" ]; then
+        echo -e "\n${GREEN}> Initialize pip Manager (requirements.txt).${ENDCOLOR}\n"
         touch $WORKSPACE_PATH/requirements.txt
-        echo -e "PIP configuration file was created (requirements.txt)."
+        echo -e "Pip configuration file was created (requirements.txt)."
     fi
 
-    echo -e "\n${GREEN}> Install dependencies with PIP (requirements.txt).${ENDCOLOR}"
+    echo -e "\n${GREEN}> Install dependencies with pip (requirements.txt).${ENDCOLOR}"
     pip install -r $WORKSPACE_PATH/requirements.txt
     echo -e "\nDone\n"
 
-    if [ ! -f "$WORKSPACE_PATH/requirements-dev.txt" ];
-    then
-        echo -e "${GREEN}> Initialize PIP Manager (requirements-dev.txt).${ENDCOLOR}\n"
+    if [ ! -f "$WORKSPACE_PATH/requirements-dev.txt" ]; then
+        echo -e "${GREEN}> Initialize pip Manager (requirements-dev.txt).${ENDCOLOR}\n"
 
         precommit_package=""
 
-        if [ "$USE_PRE_COMMIT" = 1 ];
-        then
+        if [ "$USE_PRE_COMMIT" = 1 ]; then
             precommit_package="pre-commit"
         fi
 
@@ -68,32 +61,29 @@ $formatter_package
 $precommit_package
 EOF
 
-        echo -e "PIP configuration file was created (requirements-dev.txt).\n"
+        echo -e "Pip configuration file was created (requirements-dev.txt).\n"
 
     fi
 
-    echo -e "${GREEN}> Install dependencies with PIP (requirements-dev.txt).${ENDCOLOR}\n"
+    echo -e "${GREEN}> Install dependencies with pip (requirements-dev.txt).${ENDCOLOR}\n"
     pip install -r $WORKSPACE_PATH/requirements-dev.txt
     echo -e "\nDone\n"
 
-    if [ ! -f "$WORKSPACE_PATH/requirements-test.txt" ];
-    then
-        echo -e "${GREEN}> Initialize PIP Manager (requirements-test.txt).${ENDCOLOR}\n"
+    if [ ! -f "$WORKSPACE_PATH/requirements-test.txt" ]; then
+        echo -e "${GREEN}> Initialize pip Manager (requirements-test.txt).${ENDCOLOR}\n"
 
         unittest_package=""
         coverage_package=""
 
         active=$(jq -r '.customizations.vscode.settings."python.testing.pytestEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
 
-        if [ "$active" = "true" ];
-        then
+        if [ "$active" = "true" ]; then
             unittest_package="pytest-xdist"
         fi
 
         active=$(jq -r '.customizations.vscode.settings."python.testing.coverageEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
 
-        if [ "$active" = "true" ];
-        then
+        if [ "$active" = "true" ]; then
             coverage_package="coverage"
         fi
 
@@ -103,10 +93,10 @@ $unittest_package
 $coverage_package
 EOF
 
-        echo -e "PIP configuration file was created (requirements-test.txt).\n"
+        echo -e "Pip configuration file was created (requirements-test.txt).\n"
     fi
 
-    echo -e "${GREEN}> Install dependencies with PIP (requirements-test.txt).${ENDCOLOR}\n"
+    echo -e "${GREEN}> Install dependencies with pip (requirements-test.txt).${ENDCOLOR}\n"
     pip install -r $WORKSPACE_PATH/requirements-test.txt
     echo -e "Done\n"
 

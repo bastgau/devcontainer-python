@@ -12,7 +12,7 @@ if [ -f "$WORKSPACE_PATH/.vscode/launch.json" ]; then
     echo -e "\n${YELLOW}Nothing to do.${ENDCOLOR}"
 else
 
-    echo -e "\n${GREEN}> Generate file .vscode/launch.json.${ENDCOLOR}\n"
+    echo -e "\n${GREEN}> Generate file '.vscode/launch.json'.${ENDCOLOR}\n"
 
 cat <<EOF >"$WORKSPACE_PATH/.vscode/launch.json"
 {

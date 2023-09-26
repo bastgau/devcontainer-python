@@ -21,13 +21,11 @@ echo -e "${BLUE}#############################################################${E
 
 echo -e "\n${GREEN}> Identify the packaging and dependency manager to install.${ENDCOLOR}\n"
 
-if [ "$DEPENDENCY_MANAGER"  != "" ];
-then
+if [ "$DEPENDENCY_MANAGER"  != "" ]; then
     echo -e "Environment Variable 'DEPENDENCY_MANAGER' was found with the value : $DEPENDENCY_MANAGER\n"
 fi
 
-if [ "$DEPENDENCY_MANAGER" = "PIP" ];
-then
+if [ "$DEPENDENCY_MANAGER" = "PIP" ]; then
 
     echo -e "${GREEN}> Update dependencies with PIP (requirements.txt).${ENDCOLOR}\n"
     pip install -r /workspaces/app/requirements.txt --upgrade
@@ -43,7 +41,6 @@ then
 
 fi
 
-if [ "$DEPENDENCY_MANAGER" = "POETRY" ];
-then
+if [ "$DEPENDENCY_MANAGER" = "POETRY" ]; then
     poetry update
 fi

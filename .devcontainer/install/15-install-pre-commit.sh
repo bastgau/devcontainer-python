@@ -12,11 +12,9 @@ source $WORKSPACE_PATH/.venv/bin/activate
 
 cd $WORKSPACE_PATH
 
-if [ "$USE_PRE_COMMIT" = 1 ];
-then
+if [ "$USE_PRE_COMMIT" = 1 ]; then
 
-    if [ ! -f "$WORKSPACE_PATH/.pre-commit-config.yaml" ];
-    then
+    if [ ! -f "$WORKSPACE_PATH/.pre-commit-config.yaml" ]; then
 
         echo -e "\n${GREEN}> Create pre-commit file.${ENDCOLOR}\n"
 
@@ -24,8 +22,7 @@ then
 
         formater_precommit=""
 
-        if [ "$defaultFormatter" = "eeyore.yapf" ];
-        then
+        if [ "$defaultFormatter" = "eeyore.yapf" ]; then
         formater_precommit=$(cat <<EOF
 - repo: local
   hooks:
@@ -110,7 +107,7 @@ EOF
     fi
 
     echo -e "\n${GREEN}> Install pre-commit.${ENDCOLOR}\n"
-    pre-commit install
+    pre-commit install  --install-hooks
 
 else
     echo -e "\n${YELLOW}Nothing to do.${ENDCOLOR}"

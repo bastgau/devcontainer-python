@@ -18,4 +18,4 @@ PATH="$WORKSPACE_PATH/.venv/bin:$PATH"
 
 mkdir -p $WORKSPACE_PATH/.venv/lib
 
-echo -e "Done"
+echo -e "Done\n"
