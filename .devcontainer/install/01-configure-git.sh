@@ -70,7 +70,7 @@ echo -e "\n${GREEN}> Update '.bashrc' file.${ENDCOLOR}\n"
 
 script_name=$(basename "$0" | tr '[:lower:]' '[:upper:]')
 
-sed -i  "/# \[START\]:AUTO-GENERATED_$script_name/,/# \[END\]:AUTO-GENERATED_$script_name/d" ~/.bashrc
+sed -i  "/# \[START\]:GENERATED_FROM_$script_name/,/# \[END\]:GENERATED_FROM_$script_name/d" ~/.bashrc
 
 cat <<EOF >>~/.bashrc
 # [START]:GENERATED_FROM_$script_name

@@ -12,7 +12,7 @@ echo -e "\n${GREEN}> Generate file '.bashrc'.${ENDCOLOR}\n"
 
 script_name=$(basename "$0" | tr '[:lower:]' '[:upper:]')
 
-sed -i  "/# \[START\]:AUTO-GENERATED_01/,/# \[END\]:AUTO-GENERATED_01/d" ~/.bashrc
+sed -i  "/# \[START\]:GENERATED_01/,/# \[END\]:GENERATED_01/d" ~/.bashrc
 
 cat <<EOF >>~/.bashrc
 # [START]:GENERATED_FROM_$script_name
