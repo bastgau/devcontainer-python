@@ -12,7 +12,9 @@ source $WORKSPACE_PATH/.venv/bin/activate
 
 cd $WORKSPACE_PATH
 
-if [ "$USE_PRE_COMMIT" = 1 ]; then
+PRE_COMMIT_ENABLED=$(jq -r '.customizations.vscode.settings."git.preCommitEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+
+if [ "$PRE_COMMIT_ENABLED" = "true" ]; then
 
     if [ ! -f "$WORKSPACE_PATH/.pre-commit-config.yaml" ]; then
 

@@ -8,7 +8,7 @@ echo -e "${BLUE}#####     Configure project with Poetry                 #####${E
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
-if [ "$DEPENDENCY_MANAGER" = "POETRY" ]; then
+if [ "$DEPENDENCY_MANAGER" = "poetry" ]; then
 
     source $WORKSPACE_PATH/.venv/bin/activate
 

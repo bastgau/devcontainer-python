@@ -2,15 +2,27 @@
 
 . "$WORKSPACE_PATH/.devcontainer/install/color.sh"
 
-if [ "$DEPENDENCY_MANAGER" = "PIP" ]; then
+echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
+echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
+echo -e "${BLUE}#####     Configure project with pip                    #####${ENDCOLOR}"
+echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
+echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
-    echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
-    echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-    echo -e "${BLUE}#####     Configure project with pip                    #####${ENDCOLOR}"
-    echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-    echo -e "${BLUE}#############################################################${ENDCOLOR}"
+source $WORKSPACE_PATH/.venv/bin/activate
 
-    source $WORKSPACE_PATH/.venv/bin/activate
+DEPENDENCY_MANAGER=$(jq -r '.customizations.vscode.settings."python.dependencyManager"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+
+if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
+
+    echo -e "\n${GREEN}> Pre-commit status.${ENDCOLOR}\n"
+
+    PRE_COMMIT_ENABLED=$(jq -r '.customizations.vscode.settings."git.preCommitEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+
+    if [ $PRE_COMMIT_ENABLED = "true" ]; then
+        echo -e "Pre-commit will be activated for the project."
+    else
+        echo -e "Pre-commit won't be activated for the project."
+    fi
 
     echo -e "\n${GREEN}> Identity the Python formatter to use from devcontainer.json.${ENDCOLOR}\n"
 
@@ -29,7 +41,7 @@ if [ "$DEPENDENCY_MANAGER" = "PIP" ]; then
     if [ "$defaultFormatter" = "null" ]; then
         echo -e "No Python formatter specified."
     else
-        echo -e "Python formatter found is : '$defaultFormatter'"
+        echo -e "Python formatter used in the project : '$defaultFormatter'"
     fi
 
     if [ ! -f "$WORKSPACE_PATH/requirements.txt" ]; then
@@ -47,7 +59,7 @@ if [ "$DEPENDENCY_MANAGER" = "PIP" ]; then
 
         precommit_package=""
 
-        if [ "$USE_PRE_COMMIT" = 1 ]; then
+        if [ "$PRE_COMMIT_ENABLED" = "true" ]; then
             precommit_package="pre-commit"
         fi
 
@@ -86,7 +98,6 @@ EOF
         if [ "$active" = "true" ]; then
             coverage_package="coverage"
         fi
-
 
 cat <<EOF >>$WORKSPACE_PATH/requirements-test.txt
 $unittest_package

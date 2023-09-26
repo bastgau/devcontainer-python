@@ -15,11 +15,13 @@ pip install --upgrade pip
 
 echo -e "\n${GREEN}> Identify the packaging and dependency manager to install.${ENDCOLOR}\n"
 
+DEPENDENCY_MANAGER=$(jq -r '.customizations.vscode.settings."python.dependencyManager"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+
 if [ "$DEPENDENCY_MANAGER"  != "" ]; then
-    echo -e "Environment Variable 'DEPENDENCY_MANAGER' was found with the value : $DEPENDENCY_MANAGER\n"
+    echo -e "The dependency manager used for the project is ${YELLOW}$DEPENDENCY_MANAGER${ENDCOLOR}.\n"
 fi
 
-if [ "$DEPENDENCY_MANAGER" != "PIP" ] && [ "$DEPENDENCY_MANAGER" != "POETRY" ]; then
+if [ "$DEPENDENCY_MANAGER" != "pip" ] && [ "$DEPENDENCY_MANAGER" != "poetry" ]; then
     echo -e "${RED}> No packaging and dependency manager was configured.${ENDCOLOR}\n"
     exit 1
 fi
