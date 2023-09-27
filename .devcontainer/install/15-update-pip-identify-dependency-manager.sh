@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. "$WORKSPACE_PATH/.devcontainer/install/color.sh"
+. "$WORKSPACE_PATH/tools/color.sh"
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
@@ -22,7 +22,7 @@ if [ "$DEPENDENCY_MANAGER"  != "" ]; then
 fi
 
 if [ "$DEPENDENCY_MANAGER" != "pip" ] && [ "$DEPENDENCY_MANAGER" != "poetry" ]; then
-    echo -e "${RED}> No correct packaging and dependency manager was configured.${ENDCOLOR}"
-    echo -e "${RED}> Only pip and poetry manager are supported.${ENDCOLOR}\n"
+    echo -e "${RED}No correct packaging and dependency manager was configured.${ENDCOLOR}"
+    echo -e "${RED}Only pip and poetry manager are supported.${ENDCOLOR}\n"
     exit 1
 fi

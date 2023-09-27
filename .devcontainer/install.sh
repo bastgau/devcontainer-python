@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. "$WORKSPACE_PATH/.devcontainer/install/color.sh"
+. "$WORKSPACE_PATH/tools/color.sh"
 
 cd "$WORKSPACE_PATH/.devcontainer/install"
 
@@ -12,7 +12,11 @@ echo -e "\n${BLUE} We have found $count_files installation files.${ENDCOLOR}"
 for install_file in $install_files; do
     if [ -f "$install_file" ]; then
         echo -e "\n\e[104m Execute: $install_file \e[49m"
-        chmod +x $install_file
+
+        if [ ! -x "$install_file" ]; then
+            chmod +x "$install_file"
+        fi
+
         ./"$install_file"
 
         if [ "$?" -ge 1 ]; then
@@ -26,5 +30,5 @@ for install_file in $install_files; do
     fi
 done
 
-echo -e "🎉 ${YELLOW}Installation is finished!${ENDCOLOR}"
-echo -e "🎉 ${YELLOW}You can close all terminal windows and re-open a new terminal!${ENDCOLOR}\n"
+echo -e "${YELLOW}Installation is finished!${ENDCOLOR}"
+echo -e "${YELLOW}You can close all terminal windows and re-open a new terminal!${ENDCOLOR}\n"

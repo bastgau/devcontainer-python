@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. "$WORKSPACE_PATH/.devcontainer/install/color.sh"
+. "$WORKSPACE_PATH/tools/color.sh"
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
@@ -24,7 +24,7 @@ if [ "$GIT_USERNAME" = "" ]; then
         read -p "> " git_name
 
         if [ -z "$git_name" ]; then
-            echo -e "${RED}Your name cannot be empty. Please enter a valid name.${ENDCOLOR}"
+            echo -e "\n${RED}Your name cannot be empty. Please enter a valid name.${ENDCOLOR}\n"
         else
             echo "GIT_USERNAME=\"$git_name\"" >> "$WORKSPACE_PATH/.devcontainer/user.env"
             break
@@ -43,7 +43,7 @@ if [ "$GIT_EMAIL" = "" ]; then
         echo ""
 
         if [ -z "$git_email" ]; then
-            echo -e "\n${RED}Your email cannot be empty. Please enter a valid email.${ENDCOLOR}"
+            echo -e "${RED}Your email cannot be empty. Please enter a valid email.${ENDCOLOR}"
         else
             echo "GIT_EMAIL=\"$git_email\"" >> "$WORKSPACE_PATH/.devcontainer/user.env"
             break

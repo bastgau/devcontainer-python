@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. "$WORKSPACE_PATH/.devcontainer/install/color.sh"
+. "$WORKSPACE_PATH/tools/color.sh"
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
@@ -109,7 +109,7 @@ EOF
 
     echo -e "${GREEN}> Install dependencies with pip (requirements-test.txt).${ENDCOLOR}\n"
     pip install -r $WORKSPACE_PATH/requirements-test.txt
-    echo -e "Done\n"
+    echo -e "\nDone\n"
 
 else
     echo -e "\n${YELLOW}Nothing to do.${ENDCOLOR}"

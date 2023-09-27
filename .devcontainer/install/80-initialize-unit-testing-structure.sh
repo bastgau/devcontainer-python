@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. "$WORKSPACE_PATH/.devcontainer/install/color.sh"
+. "$WORKSPACE_PATH/tools/color.sh"
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
@@ -53,7 +53,6 @@ def test_run(capsys: Any) -> None:  # pylint: disable=unused-variable
     app.run()
     capured = capsys.readouterr()
     assert capured.out == "Hello John Doe! How are you today?\n"
-
 EOF
             echo -e "\nUnit Testing directory for 'tests_$package_directory' created"
             quantity=$((quantity + 1))

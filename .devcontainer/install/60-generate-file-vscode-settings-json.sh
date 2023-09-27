@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. "$WORKSPACE_PATH/.devcontainer/install/color.sh"
+. "$WORKSPACE_PATH/tools/color.sh"
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"

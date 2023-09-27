@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. "$WORKSPACE_PATH/.devcontainer/install/color.sh"
+. "$WORKSPACE_PATH/tools/color.sh"
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
@@ -29,27 +29,27 @@ else
 fi
 
 if [ $PRE_COMMIT_ENABLED = "true" ]; then
-    echo -e "✔️ Pre-commit"
+    echo -e "✔️ㅤPre-commit"
 else
-    echo -e "✖️ Pre-commit"
+    echo -e "✖️ㅤPre-commit"
 fi
 
 if [ $PYTEST_ENABLED = "true" ]; then
-    echo -e "✔️ Pytest"
+    echo -e "✔️ㅤPytest"
 else
-    echo -e "✖️ Pytest"
+    echo -e "✖️ㅤPytest"
 fi
 
 if [ $UNITTEST_ENABLED = "true" ]; then
-    echo -e "✔️ Unittest"
+    echo -e "✔️ㅤUnittest"
 else
-    echo -e "✖️ Unittest"
+    echo -e "✖️ㅤUnittest"
 fi
 
 if [ $COVERAGE_ENABLED = "true" ]; then
-    echo -e "✔️ Code coverage"
+    echo -e "✔️ㅤCode coverage"
 else
-    echo -e "✖️ Code coverage"
+    echo -e "✖️ㅤCode coverage"
 fi
 
 if [ "$DEPENDENCY_MANAGER" != "pip" ] && [ "$DEPENDENCY_MANAGER" != "poetry" ]; then

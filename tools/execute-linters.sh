@@ -3,19 +3,13 @@
 source /workspaces/app/.venv/bin/activate
 sleep 0.5
 
-RED="\e[31m"
-GREEN="\e[32m"
-BLUE="\e[34m"
-YELLOW="\e[33m"
-BOLD="\e[1m"
-
-ENDCOLOR="\e[0m"
+. "$WORKSPACE_PATH/tools/color.sh"
 
 clear
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-echo -e "${BLUE}#####           CHECK PACKAGE FILES (PYTHON)            #####${ENDCOLOR}"
+echo -e "${BLUE}#####      Check package files (Python)                 #####${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 

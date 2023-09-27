@@ -3,29 +3,31 @@
 source $WORKSPACE_PATH/.venv/bin/activate
 sleep 0.5
 
-RED="\e[31m"
-GREEN="\e[32m"
-BLUE="\e[34m"
-YELLOW="\e[33m"
-BOLD="\e[1m"
-
-ENDCOLOR="\e[0m"
+. "$WORKSPACE_PATH/tools/color.sh"
 
 clear
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-echo -e "${BLUE}#####           UPGRADE PYTHON PACKAGES                 #####${ENDCOLOR}"
+echo -e "${BLUE}#####      Upgrade Python packages                      #####${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
 echo -e "\n${GREEN}> Identify the packaging and dependency manager to install.${ENDCOLOR}\n"
 
+DEPENDENCY_MANAGER=$(jq -r '.customizations.vscode.settings."python.dependencyManager"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+
 if [ "$DEPENDENCY_MANAGER"  != "" ]; then
-    echo -e "Environment Variable 'DEPENDENCY_MANAGER' was found with the value : $DEPENDENCY_MANAGER\n"
+    echo -e "The dependency manager used for the project is ${YELLOW}$DEPENDENCY_MANAGER${ENDCOLOR}.\n"
 fi
 
-if [ "$DEPENDENCY_MANAGER" = "PIP" ]; then
+if [ "$DEPENDENCY_MANAGER" != "pip" ] && [ "$DEPENDENCY_MANAGER" != "poetry" ]; then
+    echo -e "${RED}No correct packaging and dependency manager was configured.${ENDCOLOR}"
+    echo -e "${RED}Only pip and poetry manager are supported.${ENDCOLOR}\n"
+    exit 1
+fi
+
+if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
 
     echo -e "${GREEN}> Update dependencies with PIP (requirements.txt).${ENDCOLOR}\n"
     pip install -r /workspaces/app/requirements.txt --upgrade
@@ -41,6 +43,6 @@ if [ "$DEPENDENCY_MANAGER" = "PIP" ]; then
 
 fi
 
-if [ "$DEPENDENCY_MANAGER" = "POETRY" ]; then
+if [ "$DEPENDENCY_MANAGER" = "poetry" ]; then
     poetry update
 fi
