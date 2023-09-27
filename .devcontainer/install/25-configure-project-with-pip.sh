@@ -50,7 +50,7 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
         echo -e "Pip configuration file was created (requirements.txt)."
     fi
 
-    echo -e "\n${GREEN}> Install dependencies with pip (requirements.txt).${ENDCOLOR}"
+    echo -e "\n${GREEN}> Install dependencies with pip (requirements.txt).${ENDCOLOR}\n"
     pip install -r $WORKSPACE_PATH/requirements.txt
     echo -e "\nDone\n"
 

@@ -18,7 +18,8 @@ else
 
     echo -e "\n${GREEN}> Unit Testing directory structure will be created.${ENDCOLOR}"
 
-    mkdir -p $UNIT_TESTING_PATH
+    mkdir -p "$UNIT_TESTING_PATH"
+    touch "$UNIT_TESTING_PATH/__init__.py"
 
     package_directories=$(ls "$SOURCE_PATH" | sort)
 

@@ -27,6 +27,8 @@ PS1='\[\e[33;52m\][\t] \[\033[01;34m\]\w\[\e[1;32m\]\$(__git_ps1 " (%s)")\[\e[0;
 
 export PATH="$WORKSPACE_PATH/tools:\$PATH"
 
+source /workspaces/app/.venv/bin/activate
+
 # [END]:GENERATED_FROM_$script_name
 EOF
 
