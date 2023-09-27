@@ -17,8 +17,16 @@ UNITTEST_ENABLED=$(jq -r '.customizations.vscode.settings."python.testing.unitte
 COVERAGE_ENABLED=$(jq -r '.customizations.vscode.settings."python.testing.coverageEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
 FORMATTER=$(jq -r '.customizations.vscode.settings."editor.defaultFormatter"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
 
+PIP_EXTRA_INDEX_URL=$(jq -r '.customizations.vscode.settings."python.pip.extraIndexUrl"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+
 echo -e "The dependency manager used for the project is ${YELLOW}$DEPENDENCY_MANAGER${ENDCOLOR}."
 echo -e "The formatter used for the project is ${YELLOW}$FORMATTER${ENDCOLOR}.\n"
+
+if [ "$PIP_EXTRA_INDEX_URL" = "" ] || [ "$PIP_EXTRA_INDEX_URL" = "null" ]; then
+    echo -e "No additional package indexes is configured.\n"
+else
+    echo -e "An additional package indexes is specified (value: ${YELLOW}$PIP_EXTRA_INDEX_URL${ENDCOLOR}).\n"
+fi
 
 if [ $PRE_COMMIT_ENABLED = "true" ]; then
     echo -e "✔️ Pre-commit"
