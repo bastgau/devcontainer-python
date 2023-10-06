@@ -21,11 +21,11 @@
         "vscode": {
             "extensions": [
                 "ms-python.python",
+                "sanaajani.taskrunnercode",
                 "ms-python.vscode-pylance",
                 "ms-python.pylint",
                 "ms-python.mypy-type-checker",
-                "ms-python.flake8",
-                "sanaajani.taskrunnercode"
+                "ms-python.flake8"
             ],
             "settings": {
                 "python.terminal.activateEnvironment": true,
@@ -66,14 +66,16 @@
                     "--no-pretty",
                     "--show-error-end"
                 ],
-                "python.dependencyManager": "pip",
+                "_python.dependencyManager": "pip",
+                "__python.dependencyManager": "poetry",
+                "python.dependencyManager": "<yourchoice>",
                 "python.pip.extraIndexUrl": null,
                 "python.testing.unittestEnabled": false,
                 "python.testing.pytestEnabled": false,
                 "python.testing.coverageEnabled": false,
                 "_editor.defaultFormatter": "eeyore.yapf",
                 "__editor.defaultFormatter": "ms-python.black-formatter",
-                "editor.defaultFormatter": null,
+                "editor.defaultFormatter": "<yourchoice>",
                 "git.preCommitEnabled": false
             }
         }

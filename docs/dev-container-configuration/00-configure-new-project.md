@@ -15,4 +15,4 @@ Don't worry! We will explain to you step by step what you need to do.
 
 When you are ready to continue, you can begin setting up your project.
 
-**▶ Next step: [Start the configuration](./01-configure-packaging-dependency-manager.md)**
+**▶ Next step: [Duplicate configuration example file](./01-duplicate-configuration-example-file.md)**
