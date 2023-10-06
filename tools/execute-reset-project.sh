@@ -15,6 +15,8 @@ echo -e "${BLUE}#############################################################${E
 
 echo -e "\n${GREEN}> Reset project files.${ENDCOLOR}\n"
 
+pre-commit uninstall
+
 rm -vf "$WORKSPACE_PATH/.devonctainer/user.env"
 
 rm -vf "$WORKSPACE_PATH/.vscode/launch.json"

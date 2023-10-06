@@ -38,6 +38,7 @@ if [ "$defaultFormatter" == "ms-python.autopep8" ] || [ "$defaultFormatter" == "
     esac
 
     if [ "$defaultFormatter_name" != "" ]; then
+
         echo -e "${YELLOW}\nYou have to install the following extension to be compliant with the configuration.${ENDCOLOR}\n"
         echo -e "${YELLOW}Formatter name:${ENDCOLOR} '$defaultFormatter_name'"
         echo -e "${YELLOW}VS Marketplace Link:${ENDCOLOR} '$defaultFormatter_url'"
@@ -61,8 +62,12 @@ if [ "$defaultFormatter" == "ms-python.autopep8" ] || [ "$defaultFormatter" == "
 
         fi
 
-        if [ "$quantity" == "0" ]; then
-            echo -e "${RED}The extension seems not to be installed. Please check again!${ENDCOLOR}"
+        echo "$quantity"
+
+        if [ "$quantity" == "code or code-insiders is not installed" ]; then
+            echo -e "\nNot able to check if the installation is correctly installed. Check will be done later."
+        elif [ "$quantity" == "0" ]; then
+            echo -e "\n${RED}The extension seems not to be installed. Please check again!${ENDCOLOR}"
             echo -e "${RED}Failure to adhere to a common code formatting tool in a Python project can lead to style inconsistencies, merge conflicts, and reduced team productivity.${ENDCOLOR}\n"
             echo -e "${RED}Despite this anomaly, the container installation processus will continue.${ENDCOLOR}"
         else
