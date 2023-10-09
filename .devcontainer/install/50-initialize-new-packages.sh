@@ -101,7 +101,7 @@ def run_streamlit() -> None:  # pylint: disable=unused-variable
     The \`run_streamlit\` function calls the \`hello\` function and start a streamlit app.
     """
     message: Any = app.hello()
-    st.write(message)  # type: ignore
+    st.write(message)  # pyright: ignore
 
 
 run_streamlit()
