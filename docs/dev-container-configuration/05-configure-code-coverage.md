@@ -31,4 +31,4 @@ The possible values are 'true' and 'false'. To activate coverage, the result sho
 "python.testing.coverageEnabled": true,
 ```
 
-###### **▶ Next step: [Configure pre-commit](./06-configure-pre-commit.md)****
+###### **▶ Next step: [Configure pre-commit](./06-configure-pre-commit.md)**

@@ -31,4 +31,4 @@ The possible values are 'true' and 'false'. To activate pre-commit, the result s
 "git.preCommitEnabled": true,
 ```
 
-###### **▶ Next step: [Information linters](./07-information-linters.md)****
+###### **▶ Next step: [Information linters](./07-information-linters.md)**
