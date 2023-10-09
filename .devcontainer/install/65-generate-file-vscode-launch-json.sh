@@ -47,6 +47,28 @@ EOF
         jq --argjson new_config "$new_config" '.configurations += [$new_config]' "$WORKSPACE_PATH/.vscode/launch.json" > /tmp/temporary_launch.json
         mv /tmp/temporary_launch.json "$WORKSPACE_PATH/.vscode/launch.json"
 
+        if [ -f "$WORKSPACE_PATH/src/$package_directory/run_streamlit.py" ]; then
+
+new_config=$(
+cat <<EOF
+    {
+        "name": "Attach to Streamlit Application",
+        "type": "python",
+        "request": "launch",
+        "program": "\${workspaceFolder}/.venv/bin/streamlit",
+        "args": [
+          "run",
+          "\${workspaceFolder}/src/$package_directory/run_streamlit.py"
+        ]
+      }
+EOF
+)
+
+            jq --argjson new_config "$new_config" '.configurations += [$new_config]' "$WORKSPACE_PATH/.vscode/launch.json" > /tmp/temporary_launch.json
+            mv /tmp/temporary_launch.json "$WORKSPACE_PATH/.vscode/launch.json"
+
+        fi
+
     done
 
     echo -e "Done"

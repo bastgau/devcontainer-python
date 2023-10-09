@@ -79,6 +79,32 @@ import $package_name.application as app
 if __name__ == "__main__":
     app.run()
 EOF
+
+                    # Si le package streamlit est installé alors on ajoute le fichier run_streamlit.py
+                    if grep -q "streamlit" "$WORKSPACE_PATH/requirements.txt"; then
+
+cat <<EOF >"$SOURCE_PATH/$package_name/run_streamlit.py"
+""" File: src/$package_name/run_streamlit.py """
+
+from typing import Any
+
+import streamlit as st
+import $package_name.application as app
+
+
+def run_streamlit() -> None:  # pylint: disable=unused-variable
+    """
+    The \`run_streamlit\` function calls the \`hello\` function and start a streamlit app.
+    """
+    message: Any = app.hello()
+    st.write(message)  # type: ignore
+
+
+run_streamlit()
+EOF
+
+                    fi
+
                     quantity=$((quantity + 1))
 
                 fi
