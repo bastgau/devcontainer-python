@@ -38,3 +38,35 @@ You can locate your local .ssh directory depending on your host operating system
 
 
 ## Build container
+
+Now you are ready to build the container. Some personal information will be asked during the installation processus.
+
+The installation will be completely finished when the following message will be displayed in the terminal **"You can close all terminal windows and reload the project".**
+
+The steps to build the container are :
+
+- Go to the "View" menu in the top bar.
+- Select "Command Palette..." (or use the keyboard shortcut Ctrl+Shift+P).
+- Type "Dev Containers: Rebuild Container" in the command palette search bar and select this option.
+
+This step may take some time, depending on the complexity of your container and your internet connection speed. 😴
+
+## Reload the project
+
+After building the container, I recommend to reload your project.
+
+- Go to the "View" menu in the top bar.
+- Select "Command Palette..." (or use the keyboard shortcut Ctrl+Shift+P).
+- Type "Developer: Reload Window" in the command palette search bar and select this option.
+
+This will refresh the Visual Studio Code window with the changes made during the container rebuild.
+
+## Running your application
+
+Now that your container is ready and the project is reloaded, you can run your application.
+
+- Go to the "Run and Debug" view in the lateral bar (or use the keyboard shortcut Ctrl+Shift+D).
+- Choose the desired configuration from the list located at the top of the panel.
+- Start Debugging.
+
+...

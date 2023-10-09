@@ -31,4 +31,4 @@ for install_file in $install_files; do
 done
 
 echo -e "${YELLOW}Installation is finished!${ENDCOLOR}"
-echo -e "${YELLOW}You can close all terminal windows and re-open a new terminal!${ENDCOLOR}\n"
+echo -e "${YELLOW}You can close all terminal windows and reload the project!${ENDCOLOR}\n"
