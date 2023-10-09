@@ -81,7 +81,9 @@ if __name__ == "__main__":
 EOF
 
                     # Si le package streamlit est installé alors on ajoute le fichier run_streamlit.py
-                    if grep -q "streamlit" "$WORKSPACE_PATH/requirements.txt"; then
+                    streamlit_package=(`pip freeze | grep streamlit | wc -l`)
+
+                    if [ "$streamlit_package" == "1" ]; then
 
 cat <<EOF >"$SOURCE_PATH/$package_name/run_streamlit.py"
 """ File: src/$package_name/run_streamlit.py """

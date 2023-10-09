@@ -52,7 +52,7 @@ EOF
 new_config=$(
 cat <<EOF
     {
-        "name": "Attach to Streamlit Application",
+        "name": "Attach to Streamlit App: '$package_directory'",
         "type": "python",
         "request": "launch",
         "program": "\${workspaceFolder}/.venv/bin/streamlit",
