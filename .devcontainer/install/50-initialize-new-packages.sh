@@ -65,10 +65,10 @@ def hello(name: str = "John Doe") -> str:
     It has a default value of "John Doe" if no value is provided when calling the \`hello\` function.
 
     Returns:
-    the string "Hello {name}! How are you today!"
+    the string "Hello {name} from $package_name! How are you today!"
     """
 
-    return f"Hello {name}! How are you today?"
+    return f"Hello {name} from $package_name! How are you today?"
 EOF
 
 cat <<EOF >"$SOURCE_PATH/$package_name/__main__.py"

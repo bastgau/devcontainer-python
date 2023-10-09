@@ -44,8 +44,8 @@ import $package_directory.application as app
 def test_hello() -> None:  # pylint: disable=unused-variable
     """..."""
 
-    assert app.hello() == "Hello John Doe! How are you today?"
-    assert app.hello("Jane Doe") == "Hello Jane Doe! How are you today?"
+    assert app.hello() == "Hello John Doe from $package_directory! How are you today?"
+    assert app.hello("Jane Doe") == "Hello Jane Doe from $package_directory! How are you today?"
 
 
 def test_run(capsys: Any) -> None:  # pylint: disable=unused-variable
