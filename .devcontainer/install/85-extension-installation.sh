@@ -20,17 +20,14 @@ if [ "$defaultFormatter" == "ms-python.autopep8" ] || [ "$defaultFormatter" == "
         "ms-python.autopep8")
             defaultFormatter_name="Autopep8"
             defaultFormatter_url="https://marketplace.visualstudio.com/items?itemName=ms-python.autopep8"
-            defaultFormatter_id="ms-python.autopep8"
             ;;
         "ms-python.black-formatter")
             defaultFormatter_name="Black"
             defaultFormatter_url="https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter"
-            defaultFormatter_id="ms-python.black-formatter"
             ;;
         "eeyore.yapf")
             defaultFormatter_name="Yapf"
             defaultFormatter_url="https://marketplace.visualstudio.com/items?itemName=eeyore.yapf"
-            defaultFormatter_id="eeyore.yapf"
             ;;
         *)
             # Código a ejecutar si no se encuentra coincidencia con ningún PATRÓN
@@ -44,34 +41,40 @@ if [ "$defaultFormatter" == "ms-python.autopep8" ] || [ "$defaultFormatter" == "
         echo -e "${YELLOW}VS Marketplace Link:${ENDCOLOR} '$defaultFormatter_url'"
 
         echo -e "\n${BLUE}The extension will be installed automatically.${ENDCOLOR}\n"
-        code --install-extension "$defaultFormatter_id"
+        code --install-extension "$defaultFormatter"
 
-        quantity=(`code --list-extensions --show-versions | grep "$defaultFormatter_id" | wc -l`)
+        quantity=(`code --list-extensions --show-versions 2>/dev/null | grep "$defaultFormatter" | wc -l`)
 
-        if [ $quantity == 0 ]; then
+        if [ "$quantity" == "0" ]; then
 
             echo -e "\n${RED}The extension has not been automatically installed.${ENDCOLOR}"
-
-            echo -e "\n${BLUE}To install the extension manually, you can in the sidebar on the left, in the 'extension' menu (ctrl+shift+x) search for the extension from its extension id which is:${ENDCOLOR} '$defaultFormatter_id'\n"
+            echo -e "\n${BLUE}To install the extension manually, you can in the sidebar on the left, in the 'extension' menu (ctrl+shift+x) search for the extension from its extension id which is:${ENDCOLOR} '$defaultFormatter'\n"
 
             echo -e "${YELLOW}... When the extension is installed, press any key to continue ..."
             read -s -p " " -n 1 -r
             echo -e "${ENDCOLOR}"
 
-            quantity=(`code --list-extensions --show-versions | grep "$defaultFormatter_id" | wc -l`)
+            message=(`code --list-extensions --show-versions 2>&1 >/dev/null`)
 
+        else
+            echo -e ""
         fi
 
-        echo "$quantity"
-
-        if [ "$quantity" == "code or code-insiders is not installed" ]; then
-            echo -e "\nNot able to check if the installation is correctly installed. Check will be done later."
-        elif [ "$quantity" == "0" ]; then
-            echo -e "\n${RED}The extension seems not to be installed. Please check again!${ENDCOLOR}"
-            echo -e "${RED}Failure to adhere to a common code formatting tool in a Python project can lead to style inconsistencies, merge conflicts, and reduced team productivity.${ENDCOLOR}\n"
-            echo -e "${RED}Despite this anomaly, the container installation processus will continue.${ENDCOLOR}"
+        if [ "$message" != "" ]; then
+            echo -e "Not able to check if the extension related to the formatter is correctly installed."
+            echo -e "Check will be done later."
         else
-            echo -e "\nDone. Extension is installed."
+
+            quantity=(`code --list-extensions --show-versions 2>/dev/null | grep "$defaultFormatter_id" | wc -l`)
+
+            if [ "$quantity" == "0" ]; then
+                echo -e "${RED}The extension seems not to be installed. Please check again!${ENDCOLOR}"
+                echo -e "${RED}Failure to adhere to a common code formatting tool in a Python project can lead to style inconsistencies, merge conflicts, and reduced team productivity.${ENDCOLOR}\n"
+                echo -e "${RED}Despite this anomaly, the container installation processus will continue.${ENDCOLOR}"
+            else
+                echo -e "Done. Extension is installed."
+            fi
+
         fi
 
     else

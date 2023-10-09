@@ -51,8 +51,13 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
     fi
 
     echo -e "\n${GREEN}> Install dependencies with pip (requirements.txt).${ENDCOLOR}\n"
-    pip install -r $WORKSPACE_PATH/requirements.txt
-    echo -e "\nDone\n"
+
+    if [ -z "$(cat $WORKSPACE_PATH/requirements.txt)" ]; then
+        echo -e "No package to install\n"
+    else
+        pip install -r $WORKSPACE_PATH/requirements.txt
+        echo -e "\nDone\n"
+    fi
 
     if [ ! -f "$WORKSPACE_PATH/requirements-dev.txt" ]; then
         echo -e "${GREEN}> Initialize pip Manager (requirements-dev.txt).${ENDCOLOR}\n"
@@ -78,8 +83,13 @@ EOF
     fi
 
     echo -e "${GREEN}> Install dependencies with pip (requirements-dev.txt).${ENDCOLOR}\n"
-    pip install -r $WORKSPACE_PATH/requirements-dev.txt
-    echo -e "\nDone\n"
+
+    if [ -z "$(cat $WORKSPACE_PATH/requirements-dev.txt)" ]; then
+        echo -e "No package to install\n"
+    else
+        pip install -r $WORKSPACE_PATH/requirements-dev.txt
+        echo -e "\nDone\n"
+    fi
 
     if [ ! -f "$WORKSPACE_PATH/requirements-test.txt" ]; then
         echo -e "${GREEN}> Initialize pip Manager (requirements-test.txt).${ENDCOLOR}\n"
@@ -108,8 +118,13 @@ EOF
     fi
 
     echo -e "${GREEN}> Install dependencies with pip (requirements-test.txt).${ENDCOLOR}\n"
-    pip install -r $WORKSPACE_PATH/requirements-test.txt
-    echo -e "\nDone\n"
+
+    if [ -z "$(cat $WORKSPACE_PATH/requirements-test.txt)" ]; then
+        echo -e "No package to install\n"
+    else
+        pip install -r $WORKSPACE_PATH/requirements-test.txt
+        echo -e "\nDone\n"
+    fi
 
 else
     echo -e "\n${YELLOW}Nothing to do.${ENDCOLOR}"
