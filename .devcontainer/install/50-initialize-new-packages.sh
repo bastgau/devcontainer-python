@@ -8,6 +8,8 @@ echo -e "${BLUE}#####     Initialize new packages                       #####${E
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
+source $WORKSPACE_PATH/.venv/bin/activate
+
 mkdir -p $SOURCE_PATH
 
 if [ "$(ls -A "$SOURCE_PATH" | wc -l)" -ge 1 ]; then
