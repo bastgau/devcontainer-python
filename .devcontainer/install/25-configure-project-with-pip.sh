@@ -38,6 +38,10 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
         formatter_package="yapf"
     fi
 
+    if [ "$defaultFormatter" = "ms-python.autopep8" ]; then
+        formatter_package="autopep8"
+    fi
+
     if [ "$defaultFormatter" = "null" ]; then
         echo -e "No Python formatter specified."
     else
