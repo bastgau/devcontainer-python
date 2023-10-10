@@ -26,7 +26,7 @@ fi
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pylint" ]; then
     echo -e "\n${YELLOW}> Pylint.${ENDCOLOR}\n"
-    pylint $SOURCE_PATH --score=false --jobs=10
+    pylint $SOURCE_PATH --score=false --jobs=4
 
     if [ "$?" -eq 0 ]; then
         echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
