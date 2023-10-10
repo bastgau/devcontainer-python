@@ -51,14 +51,6 @@
                 "editor.formatOnSaveMode": "file",
                 "editor.formatOnSave": true,
                 "mypy-type-checker.args": [
-                    "--no-color-output",
-                    "--no-error-summary",
-                    "--show-absolute-path",
-                    "--show-column-numbers",
-                    "--show-error-codes",
-                    "--no-pretty",
-                    "--show-error-end",
-                    "--warn-unused-ignores",
                     "--follow-imports=skip"
                 ],
                 "_python.dependencyManager": "pip",

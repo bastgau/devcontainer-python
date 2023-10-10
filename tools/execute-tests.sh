@@ -50,7 +50,7 @@ if [ -d "$WORKSPACE_PATH/tests" ]; then
 
     if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/mypy" ]; then
         echo -e "\n${YELLOW}> Mypy.${ENDCOLOR}\n"
-        mypy $WORKSPACE_PATH/tests
+        mypy --follow-imports=skip $WORKSPACE_PATH/tests
     fi
 
     # TOOL : yapf
