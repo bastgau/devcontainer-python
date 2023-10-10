@@ -21,7 +21,7 @@ if which pyright >/dev/null; then
         fi
     fi
 
-    timeout --preserve-status 5s pyright --version
+    timeout --preserve-status 120s pyright --version
 
     if [ "$?" == 143 ]; then
         rm -rf "$HOME/.cache/pyright-python/nodeenv"
