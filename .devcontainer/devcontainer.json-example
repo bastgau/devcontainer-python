@@ -28,7 +28,7 @@
                 "ms-python.flake8"
             ],
             "settings": {
-                "python.terminal.activateEnvironment": true,
+                "python.terminal.activateEnvironment": false,
                 "python.defaultInterpreterPath": "/workspaces/app/.venv/bin/python",
                 "python.createEnvironment.contentButton": "hide",
                 "python.analysis.typeCheckingMode": "strict",
