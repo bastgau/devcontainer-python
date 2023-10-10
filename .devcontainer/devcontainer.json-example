@@ -35,9 +35,6 @@
                 "python.analysis.importFormat": "absolute",
                 "python.analysis.logLevel": "Trace",
                 "python.languageServer": "Pylance",
-                "python.analysis.exclude": [
-                    "**/.venv"
-                ],
                 "python.testing.pytestArgs": [
                     "tests"
                 ],
