@@ -33,7 +33,6 @@
                 "python.createEnvironment.contentButton": "hide",
                 "python.analysis.typeCheckingMode": "strict",
                 "python.analysis.importFormat": "absolute",
-                "python.analysis.diagnosticMode": "workspace",
                 "python.analysis.logLevel": "Trace",
                 "python.languageServer": "Pylance",
                 "python.analysis.exclude": [
