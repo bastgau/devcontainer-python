@@ -94,7 +94,7 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
 
                 ;;
                 [Nn]*) echo -n ""; break ;;
-                *) echo -e "\n${RED}Please answer with 'y' (yes) or 'n' (no).${ENDCOLOR}" ;;
+                *) echo -e "\n${RED}Please answer with 'y' (yes) or 'n' (no).${ENDCOLOR}\n" ;;
 
             esac
 

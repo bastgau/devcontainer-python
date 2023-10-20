@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# ignored: azure-function-python
+
 . "$WORKSPACE_PATH/tools/color.sh"
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"

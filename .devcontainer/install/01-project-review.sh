@@ -64,7 +64,7 @@ if [ "$FORMATTER" != "eeyore.yapf" ] && [ "$FORMATTER" != "ms-python.black-forma
     STOP=true
 fi
 
-if [ "STOP" = "true" ]; then
+if [ "$STOP" == "true" ]; then
     exit 1
 fi
 
