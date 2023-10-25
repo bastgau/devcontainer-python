@@ -48,7 +48,7 @@ fi
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/mypy" ]; then
     echo -e "\n${YELLOW}> Mypy.${ENDCOLOR}\n"
-    mypy --follow-imports=skip $SOURCE_PATH
+    mypy $SOURCE_PATH
 fi
 
 # TOOL : yapf
