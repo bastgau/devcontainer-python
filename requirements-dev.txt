@@ -1,0 +1,7 @@
+yamllint
+pyright
+pylint
+flake8
+mypy
+yapf
+pandas-stubs

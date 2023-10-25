@@ -1,0 +1,1 @@
+/workspaces/app/src/pkg_function_app/requirements.txt

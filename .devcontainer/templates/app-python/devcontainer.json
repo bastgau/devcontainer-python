@@ -52,9 +52,7 @@
                 },
                 "editor.formatOnSaveMode": "file",
                 "editor.formatOnSave": true,
-                "mypy-type-checker.args": [
-                    "--follow-imports=skip"
-                ],
+                "mypy-type-checker.args": [],
                 "_python.dependencyManager": "pip",
                 "__python.dependencyManager": "poetry",
                 "python.dependencyManager": "<yourchoice>",

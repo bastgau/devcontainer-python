@@ -1,6 +1,5 @@
-# See here for image contents:
-ARG VARIANT="3.10-bullseye"
-FROM mcr.microsoft.com/vscode/devcontainers/python:0-${VARIANT}
+ARG VARIANT="3.10"
+FROM mcr.microsoft.com/azure-functions/python:4-python${VARIANT}-core-tools
 
 WORKDIR /workspaces/app
 ARG WORKSPACE_FOLDER="/workspaces/app"
