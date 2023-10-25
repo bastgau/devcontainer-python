@@ -64,7 +64,14 @@
                 "__editor.defaultFormatter": "ms-python.black-formatter",
                 "___editor.defaultFormatter": "eeyore.yapf",
                 "editor.defaultFormatter": "<yourchoice>",
-                "git.preCommitEnabled": false
+                "git.preCommitEnabled": false,
+                "azureFunctions.scmDoBuildDuringDeployment": true,
+                "azureFunctions.projectLanguage": "Python",
+                "azureFunctions.projectRuntime": "~4",
+                "azureFunctions.projectLanguageModel": 2,
+                "azureFunctions.deploySubpath": ".",
+                "azureFunctions.pythonVenv": ".venv",
+                "task.autoDetect": "off"
             }
         }
     },

@@ -54,9 +54,7 @@
                 },
                 "editor.formatOnSaveMode": "file",
                 "editor.formatOnSave": true,
-                "mypy-type-checker.args": [
-                    "--follow-imports=skip"
-                ],
+                "mypy-type-checker.args": [],
                 "python.dependencyManager": "pip",
                 "python.pip.extraIndexUrl": null,
                 "python.testing.coverageEnabled": false,
@@ -66,7 +64,14 @@
                 "__editor.defaultFormatter": "ms-python.black-formatter",
                 "___editor.defaultFormatter": "eeyore.yapf",
                 "editor.defaultFormatter": "eeyore.yapf",
-                "git.preCommitEnabled": false
+                "git.preCommitEnabled": false,
+                "azureFunctions.scmDoBuildDuringDeployment": true,
+                "azureFunctions.projectLanguage": "Python",
+                "azureFunctions.projectRuntime": "~4",
+                "azureFunctions.projectLanguageModel": 2,
+                "azureFunctions.deploySubpath": ".",
+                "azureFunctions.pythonVenv": ".venv",
+                "task.autoDetect": "off"
             }
         }
     },

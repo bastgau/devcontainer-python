@@ -1,0 +1,9 @@
+[
+    {
+        "label":"Azure Function - func: host start",
+        "type":"func",
+        "command":"host start --script-root /workspaces/app/src/pkg_function_app",
+        "problemMatcher":"$func-python-watch",
+        "isBackground":true
+    }
+]

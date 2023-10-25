@@ -1,0 +1,5 @@
+[
+    "eeyore.yapf",
+    "ms-python.black-formatter",
+    "ms-python.autopep8"
+]
