@@ -36,12 +36,12 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
 
         echo "" > /tmp/tmp_requirements.txt
 
-        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/requirements-test.txt" ]; then
-            cat "$WORKSPACE_PATH/.devcontainer/templates/default/requirements-test.txt" >> /tmp/tmp_requirements.txt
+        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/config/requirements-test.txt" ]; then
+            cat "$WORKSPACE_PATH/.devcontainer/templates/default/config/requirements-test.txt" >> /tmp/tmp_requirements.txt
         fi
 
-        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/requirements-test.txt" ]; then
-            cat "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/requirements-test.txt" >> /tmp/tmp_requirements.txt
+        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/config/requirements-test.txt" ]; then
+            cat "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/config/requirements-test.txt" >> /tmp/tmp_requirements.txt
         fi
 
         sed -i "s/{coverage_package}/$coverage_package/" /tmp/tmp_requirements.txt

@@ -23,12 +23,12 @@ else
     CONTAINER_TYPE=$(jq -r '.customizations.vscode.settings."container.type"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
 
 
-    if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/launch.json" ]; then
+    if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/config/launch.json" ]; then
 
         projects=(`ls $SOURCE_PATH/`)
 
         for project in "${projects[@]}"; do
-            content=$(cat $WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/launch.json)
+            content=$(cat $WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/config/launch.json)
             path=$(echo "$SOURCE_PATH/$project" | sed 's/\//\\\//g')
             content=$(echo "$content" | sed "s/{project_path}/$path/")
             content=$(echo "$content" | sed "s/{project_name}/$project/")
@@ -38,8 +38,8 @@ else
     fi
 
     # Add other configurations.
-    if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/launch.json" ]; then
-        content=$(cat $WORKSPACE_PATH/.devcontainer/templates/default/launch.json)
+    if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/config/launch.json" ]; then
+        content=$(cat $WORKSPACE_PATH/.devcontainer/templates/default/config/launch.json)
         merged_content=$(echo "$merged_content" | jq ".configurations += $content")
     fi
 

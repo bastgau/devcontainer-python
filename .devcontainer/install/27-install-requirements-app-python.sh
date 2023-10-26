@@ -23,14 +23,14 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
 
         echo "" > /tmp/tmp_requirements.txt
 
-        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/requirements.txt" ]; then
-            cat "$WORKSPACE_PATH/.devcontainer/templates/default/requirements.txt" >> /tmp/tmp_requirements.txt
+        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/config/requirements.txt" ]; then
+            cat "$WORKSPACE_PATH/.devcontainer/templates/default/config/requirements.txt" >> /tmp/tmp_requirements.txt
         fi
 
         CONTAINER_TYPE=$(jq -r '.customizations.vscode.settings."container.type"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
 
-        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/requirements.txt" ]; then
-            cat "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/requirements.txt" >> /tmp/tmp_requirements.txt
+        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/config/requirements.txt" ]; then
+            cat "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/config/requirements.txt" >> /tmp/tmp_requirements.txt
         fi
 
         sed -i '/^$/d' /tmp/tmp_requirements.txt

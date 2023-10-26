@@ -65,12 +65,12 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
 
         echo "" > /tmp/tmp_requirements.txt
 
-        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/requirements-dev.txt" ]; then
-            cat "$WORKSPACE_PATH/.devcontainer/templates/default/requirements-dev.txt" >> /tmp/tmp_requirements.txt
+        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/config/requirements-dev.txt" ]; then
+            cat "$WORKSPACE_PATH/.devcontainer/templates/default/config/requirements-dev.txt" >> /tmp/tmp_requirements.txt
         fi
 
-        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/requirements-dev.txt" ]; then
-            cat "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/requirements-dev.txt" >> /tmp/tmp_requirements.txt
+        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/config/requirements-dev.txt" ]; then
+            cat "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/config/requirements-dev.txt" >> /tmp/tmp_requirements.txt
         fi
 
         sed -i "s/{precommit_package}/$precommit_package/" /tmp/tmp_requirements.txt
