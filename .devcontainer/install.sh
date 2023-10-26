@@ -1,121 +1,51 @@
 #!/bin/bash
 
-RED="\e[31m"
-GREEN="\e[32m"
-BLUE="\e[34m"
-YELLOW="\e[33m"
-ENDCOLOR="\e[0m"
+. "$WORKSPACE_PATH/tools/color.sh"
 
-echo -e "\n${BLUE}################################"
-echo -e "${BLUE}####       INSTALL.SH       ####${ENDCOLOR}"
-echo -e "${BLUE}################################"
+cd "$WORKSPACE_PATH/.devcontainer/install"
 
-echo -e "\n${GREEN}> Configure virtual environment.${ENDCOLOR}\n"
+CONTAINER_TYPE=$(jq -r '.customizations.vscode.settings."container.type"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+echo -e "\n${BLUE}You are about to initiate a project '${YELLOW}$CONTAINER_TYPE${BLUE}'.${ENDCOLOR}"
 
-sudo chgrp vscode /workspaces/app/.venv
-sudo chown vscode /workspaces/app/.venv
-
-git config --global --add safe.directory /workspaces/app
-git config --global core.eol lf
-git config --global core.autocrlf false
-
-python3 -m venv /workspaces/app/.venv
-PATH="/workspaces/app/.venv/bin:$PATH"
-
-echo -e "Done.\n"
-
-echo -e "${GREEN}> Update PIP tool.${ENDCOLOR}\n"
-pip install --upgrade pip
-
-echo -e "\n${GREEN}> Identify the packaging and dependency manager to install.${ENDCOLOR}\n"
-
-PIP_MANAGER=false
-POETRY_MANAGER=false
-
-NEW_POETRY_INSTALL=false
-
-FILE=/workspaces/app/requirements.txt
-
-if [ -f "$FILE" ];
-then
-    echo -e "PIP configuration file was found (requirements.txt).\n"
-    PIP_MANAGER=true
-fi
-
-FILE=/workspaces/app/pyproject.toml
-
-if [ -f "$FILE" ];
-then
-    echo -e "POETRY configuration file was found (pyproject.toml).${ENDCOLOR}"
-    POETRY_MANAGER=true
-fi
-
-if [ "$POETRY_MANAGER" = true ] && [ "$PIP_MANAGER" = true ];
-then
-    echo -e "${RED}> ERROR: You cannot define two packaging and dependency manager in the same time.${ENDCOLOR}\n"
+if [ ]; then
+    echo -e "\n💥 ${RED}Installation was aborted. Specified container type '$CONTAINER_TYPE' is not supported.${ENDCOLOR}💥\n"
     exit 1
 fi
 
-if [ "$POETRY_MANAGER" = false ] && [ "$PIP_MANAGER" = false ];
-then
+install_files=()
 
-    echo -e "${YELLOW}No packaging and dependency manager was found.${ENDCOLOR}"
-    echo -e "${YELLOW}Type 'PIP' or 'POETRY' if you want to install a packaging and dependency manager !${ENDCOLOR}"
-    echo -e "${YELLOW}Another option will install no packaging and dependency manager.${ENDCOLOR}"
-    echo -e "${YELLOW}Your selection :${ENDCOLOR}"
-
-    read MANAGER
-    echo -e "The following packaging and dependency manager will be installed : $MANAGER\n"
-
-    if [ "${MANAGER^^}" = "POETRY" ]
-    then
-        POETRY_MANAGER=true
-        NEW_POETRY_INSTALL=true
+while IFS= read -r -d $'\0' current_file ; do
+    if ! grep -q "# ignored: $CONTAINER_TYPE" "$current_file"; then
+        install_files+=("$current_file")
     fi
+done < <(find ./ -type f -name "*.sh" -print0)
 
-    if [ "${MANAGER^^}" = "PIP" ]
-    then
-        PIP_MANAGER=true
-        touch /workspaces/app/requirements.txt
-        touch /workspaces/app/requirements-dev.txt
+install_files=($(printf "%s\n" "${install_files[@]}" | sort))
+
+echo -e "${BLUE}We have found ${YELLOW}${#install_files[@]}${BLUE} installation files.${ENDCOLOR}"
+
+for install_file in "${install_files[@]}"; do
+    if [ -f "$install_file" ]; then
+
+        echo -e "\n\e[104m Execute: $install_file \e[49m"
+
+        if [ ! -x "$install_file" ]; then
+            chmod +x "$install_file"
+        fi
+
+        ./"$install_file"
+
+        if [ "$?" -ge 1 ]; then
+            echo -e "\n💥 ${RED}Installation was aborted. Check the errors displayed above.${ENDCOLOR}💥\n"
+            exit 1
+        else
+            echo -e "${YELLOW}... Press any key to continue ..."
+            read -s -p " " -n 1 -r
+            echo -e "${ENDCOLOR}"
+        fi
+
     fi
+done
 
-fi
-
-source /workspaces/app/.venv/bin/activate
-
-if [ "$PIP_MANAGER" = true ];
-then
-
-    echo -e "${GREEN}> Install dependencies with PIP.${ENDCOLOR}\n"
-
-    # pip install keyring artifacts-keyring
-
-    # cat <<EOF >> /workspaces/app/.venv/pip.conf
-    # [global]
-    # extra-index-url=https://pkgs.dev.azure.com/...
-    # EOF
-
-    pip install -r /workspaces/app/requirements-dev.txt
-    pip install -r /workspaces/app/requirements.txt
-
-fi
-
-if [ "$POETRY_MANAGER" = true ];
-then
-
-    echo -e "${GREEN}> Install POETRY tool and install dependencies.${ENDCOLOR}\n"
-    curl -sSL https://install.python-poetry.org | python3 -
-    poetry completions bash >> ~/.bash_completion
-
-    if [ "$POETRY_MANAGER" = true ];
-    then
-        poetry init
-    fi
-
-    poetry install
-
-fi
-
-chmod +x /workspaces/app/.devcontainer/check-post-install.sh
-/workspaces/app/.devcontainer/check-post-install.sh
+echo -e "🎉 ${YELLOW}Installation is finished!${ENDCOLOR}"
+echo -e "🎉 ${YELLOW}You can close all terminal windows and reload the project!${ENDCOLOR}\n"

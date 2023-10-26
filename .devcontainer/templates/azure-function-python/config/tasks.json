@@ -1,0 +1,12 @@
+[
+    {
+        "label":"Azure Function - Start: {project_name}",
+        "type":"func",
+        "command":"host start --script-root {project_path}",
+        "problemMatcher":"$func-python-watch",
+        "isBackground":true,
+        "options": {
+            "cwd": "{project_path}"
+          }
+    }
+]

@@ -3,62 +3,73 @@
 source /workspaces/app/.venv/bin/activate
 sleep 0.5
 
-RED="\e[31m"
-GREEN="\e[32m"
-BLUE="\e[34m"
-YELLOW="\e[33m"
-BOLD="\e[1m"
+. "$WORKSPACE_PATH/tools/color.sh"
 
-ENDCOLOR="\e[0m"
+clear
 
-echo -e "\n${YELLOW}> YAML Lint.${ENDCOLOR}"
-yamllint /workspaces/app/snow_revoke_privileges/
+echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
+echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
+echo -e "${BLUE}#####      Check package files (Python)                 #####${ENDCOLOR}"
+echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
+echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
-if [ "$?" -eq 0 ]; then
-    echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
+VIRTUAL_ENVIRONMENT_DIRECTORY="/workspaces/app/.venv/bin"
+
+# TOOL : pyright
+
+if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pyright" ]; then
+    echo -e "\n${YELLOW}> Pyright / Pylance.${ENDCOLOR}\n"
+    timeout --preserve-status 60s pyright $SOURCE_PATH
 fi
 
-echo -e "\n${YELLOW}> Pyright / Pylance.${ENDCOLOR}"
-result=$(pyright /workspaces/app/snow_revoke_privileges/)
+# TOOL : pylint
 
-if [ "$?" -eq 0 ]; then
-    echo -e "${GREEN}${BOLD}Success: $result${ENDCOLOR}"
-else
-    echo -e $result
+if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pylint" ]; then
+    echo -e "\n${YELLOW}> Pylint.${ENDCOLOR}\n"
+    pylint $SOURCE_PATH --score=false --jobs=4
+
+    if [ "$?" -eq 0 ]; then
+        echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
+    fi
 fi
 
-echo -e "\n${YELLOW}> Pylint.${ENDCOLOR}"
-pylint /workspaces/app/snow_revoke_privileges/ --score=false --jobs=10
+# TOOL : flake8
 
-if [ "$?" -eq 0 ]; then
-    echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
+if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/flake8" ]; then
+    echo -e "\n${YELLOW}> Flake8.${ENDCOLOR}\n"
+    flake8 $SOURCE_PATH
+
+    if [ "$?" -eq 0 ]; then
+        echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
+    fi
 fi
 
-echo -e "\n${YELLOW}> Flake8.${ENDCOLOR}"
-flake8 /workspaces/app/snow_revoke_privileges/
+# TOOL : mypy
 
-if [ "$?" -eq 0 ]; then
-    echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
+if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/mypy" ]; then
+    echo -e "\n${YELLOW}> Mypy.${ENDCOLOR}\n"
+    mypy $SOURCE_PATH
 fi
 
-echo -e "\n${YELLOW}> Mypy.${ENDCOLOR}"
-mypy /workspaces/app/snow_revoke_privileges/
+# TOOL : yapf
 
-echo -e "\n${YELLOW}> Pylama.${ENDCOLOR}"
-pylama /workspaces/app/snow_revoke_privileges/
+if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/yapf" ]; then
+    echo -e "\n${YELLOW}> Yapf.${ENDCOLOR}\n"
+    result=$(yapf --diff $SOURCE_PATH --recursive | grep "(reformatted)" | grep "+++")
 
-if [ "$?" -eq 0 ]; then
-    echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
+    if [ "$result" = "" ]; then
+        echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
+    else
+        result_modified=$(echo "$result" | sed 's/+++/would reformat/g; s/(reformatted)//g')
+        echo -e "${BOLD}$result_modified${ENDCOLOR}"
+    fi
 fi
 
-echo -e "\n${YELLOW}> Yapf.${ENDCOLOR}"
-yapf --diff /workspaces/app/snow_revoke_privileges/ --recursive
+# TOOL : black
 
-if [ "$?" -eq 0 ]; then
-    echo -e "${GREEN}${BOLD}Success: no issues found${ENDCOLOR}"
+if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/black" ]; then
+    echo -e "\n${YELLOW}> Black.${ENDCOLOR}\n"
+    black --check $SOURCE_PATH
 fi
 
-echo -e "\n${YELLOW}> Pytest.${ENDCOLOR}\n"
-pytest ./tests/test_*.py -v -s -n auto --no-header --no-summary
-
-echo -e "\n${BLUE}All verifications are done.${ENDCOLOR}\n"
+echo -e "\n${BLUE}All verifications are Done${ENDCOLOR}\n"

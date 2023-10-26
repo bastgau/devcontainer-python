@@ -1,0 +1,80 @@
+{
+    "name": "Azure Functions & Python 3",
+    "forwardPorts": [ 7071 ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/app,type=bind",
+    "workspaceFolder": "/workspaces/app",
+    "mounts": [
+        "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,readonly"
+    ],
+    "runArgs": [
+        "--env-file",
+        ".devcontainer/project.env"
+    ],
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": {
+            "VARIANT": "3.11",
+            "NODE_VERSION": "lts/*"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-azuretools.vscode-azurefunctions",
+                "sanaajani.taskrunnercode",
+                "ms-python.vscode-pylance",
+                "ms-python.pylint",
+                "ms-python.mypy-type-checker",
+                "ms-python.flake8"
+            ],
+            "settings": {
+                "container.type": "azure-function-python",
+                "python.terminal.activateEnvironment": false,
+                "python.defaultInterpreterPath": "/workspaces/app/.venv/bin/python",
+                "python.createEnvironment.contentButton": "hide",
+                "python.analysis.typeCheckingMode": "strict",
+                "python.analysis.importFormat": "absolute",
+                "python.analysis.logLevel": "Trace",
+                "python.languageServer": "Pylance",
+                "python.testing.pytestArgs": [
+                    "tests"
+                ],
+                "files.trimTrailingWhitespace": true,
+                "files.trimFinalNewlines": true,
+                "files.insertFinalNewline": true,
+                "files.eol": "\n",
+                "files.exclude": {
+                    "**/__pycache__": true,
+                    "**/.mypy_cache": true,
+                    "**/.venv": true,
+                    "**/.pytest_cache": true,
+                    "**/.python_packages": true
+                },
+                "editor.formatOnSaveMode": "modifications",
+                "editor.formatOnSave": true,
+                "mypy-type-checker.args": [],
+                "python.dependencyManager": "pip",
+                "python.pip.extraIndexUrl": null,
+                "python.testing.coverageEnabled": false,
+                "python.testing.pytestEnabled": false,
+                "python.testing.unittestEnabled": false,
+                "_editor.defaultFormatter": "ms-python.autopep8",
+                "__editor.defaultFormatter": "ms-python.black-formatter",
+                "___editor.defaultFormatter": "eeyore.yapf",
+                "editor.defaultFormatter": "<yourchoice>",
+                "git.preCommitEnabled": false,
+                "azureFunctions.scmDoBuildDuringDeployment": true,
+                "azureFunctions.pythonVenv": ".venv",
+                "azureFunctions.projectLanguage": "Python",
+                "azureFunctions.projectRuntime": "~4",
+                "azureFunctions.projectLanguageModel": 2,
+                "debug.internalConsoleOptions": "neverOpen",
+                "task.autoDetect": "off"
+            }
+        }
+    },
+    "postCreateCommand": "sudo chmod +x $WORKSPACE_PATH/.devcontainer/install.sh && $WORKSPACE_PATH/.devcontainer/install.sh",
+    "remoteUser": "vscode"
+}

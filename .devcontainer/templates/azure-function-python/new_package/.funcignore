@@ -1,0 +1,11 @@
+.git*
+.vscode
+.funcignore
+.mypy_cache
+.pytest_cache
+__pycache__
+__azurite_db*__.json
+__blobstorage__
+__queuestorage__
+local.settings.json
+test
