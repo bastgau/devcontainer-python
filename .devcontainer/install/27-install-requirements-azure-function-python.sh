@@ -31,11 +31,11 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
         for file in $requirements_files; do
             echo -e "- $file"
         done
-        echo -e "\n${BLUE}These files will be used and not modified. No other file will be created.${ENDCOLOR}\n"
+        echo -e "\n${BLUE}These files will be used and not modified. No other file will be created.${ENDCOLOR}"
         no_existing_file=false
 
         if [ "$(echo "$requirements_files" | wc -l)" -ne "$(echo "$projects" | wc -l)" ]; then
-            echo -e "${RED}The number of 'requirements.txt' files should match the number of Azure Function projects.${ENDCOLOR}\n"
+            echo -e "\n${RED}The number of 'requirements.txt' files should match the number of Azure Function projects.${ENDCOLOR}\n"
         fi
 
     fi

@@ -24,13 +24,13 @@ else
     CONTAINER_TYPE=$(jq -r '.customizations.vscode.settings."container.type"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
 
     if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/launch.json" ]; then
-        content=$(cat ./.devcontainer/templates/${CONTAINER_TYPE}/launch.json)
+        content=$(cat $WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/launch.json)
         merged_content=$(echo "$merged_content" | jq ".configurations += $content")
     fi
 
     # Add other configurations.
     if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/launch.json" ]; then
-        content=$(cat ./.devcontainer/templates/default/launch.json)
+        content=$(cat $WORKSPACE_PATH/.devcontainer/templates/default/launch.json)
         merged_content=$(echo "$merged_content" | jq ".configurations += $content")
     fi
 

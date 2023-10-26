@@ -27,7 +27,7 @@ else
         projects=(`ls $SOURCE_PATH/`)
 
         for project in "${projects[@]}"; do
-            content=$(cat ./.devcontainer/templates/${CONTAINER_TYPE}/tasks.json)
+            content=$(cat $WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/tasks.json)
             path=$(echo "$SOURCE_PATH/$project" | sed 's/\//\\\//g')
             content=$(echo "$content" | sed "s/{project_path}/$path/")
             merged_content=$(echo "$merged_content" | jq ".tasks += $content")
@@ -37,7 +37,7 @@ else
 
     # Add other configurations.
     if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/tasks.json" ]; then
-        content=$(cat ./.devcontainer/templates/default/tasks.json)
+        content=$(cat $WORKSPACE_PATH/.devcontainer/templates/default/tasks.json)
         merged_content=$(echo "$merged_content" | jq ".tasks += $content")
     fi
 

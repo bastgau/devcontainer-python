@@ -15,7 +15,7 @@ DEPENDENCY_MANAGER=$(jq -r '.customizations.vscode.settings."python.dependencyMa
 if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
 
     if [ ! -f "$WORKSPACE_PATH/requirements-test.txt" ]; then
-        echo -e "${GREEN}> Initialize pip Manager (requirements-test.txt).${ENDCOLOR}\n"
+        echo -e "\n${GREEN}> Initialize pip Manager (requirements-test.txt).${ENDCOLOR}\n"
 
         unittest_package=""
         coverage_package=""
@@ -52,10 +52,10 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
 
         rm -f /tmp/tmp_requirements.txt
 
-        echo -e "Pip configuration file was created (requirements-test.txt).\n"
+        echo -e "Pip configuration file was created (requirements-test.txt)."
     fi
 
-    echo -e "${GREEN}> Install dependencies with pip (requirements-test.txt).${ENDCOLOR}\n"
+    echo -e "\n${GREEN}> Install dependencies with pip (requirements-test.txt).${ENDCOLOR}\n"
 
     if [ -z "$(cat $WORKSPACE_PATH/requirements-test.txt)" ]; then
         echo -e "No package to install\n"
