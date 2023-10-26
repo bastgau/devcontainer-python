@@ -4,7 +4,7 @@
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-echo -e "${BLUE}#####     Configure project with pip                    #####${ENDCOLOR}"
+echo -e "${BLUE}#####     Install requirements.txt (dev)                #####${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
@@ -14,7 +14,7 @@ DEPENDENCY_MANAGER=$(jq -r '.customizations.vscode.settings."python.dependencyMa
 
 if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
 
-# PREPARE PRE-COMMIT PACKAGE IF NEEDED.
+    # PREPARE PRE-COMMIT PACKAGE IF NEEDED.
 
     echo -e "\n${GREEN}> Pre-commit status.${ENDCOLOR}\n"
 
@@ -26,7 +26,7 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
         echo -e "Pre-commit won't be activated for the project."
     fi
 
-# PREPARE FORMATTER PACKAGE IF NEEDED.
+    # PREPARE FORMATTER PACKAGE IF NEEDED.
 
     echo -e "\n${GREEN}> Identity the Python formatter to use from devcontainer.json.${ENDCOLOR}\n"
 
@@ -52,65 +52,6 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
         echo -e "Python formatter used in the project : '$defaultFormatter'"
     fi
 
-# INSTALL PACKAGE FROM REQUIREMENTS.TXT
-
-    if [ ! -f "$WORKSPACE_PATH/requirements.txt" ]; then
-        echo -e "\n${GREEN}> Initialize pip Manager (requirements.txt).${ENDCOLOR}\n"
-        touch $WORKSPACE_PATH/requirements.txt
-        echo -e "Pip configuration file was created (requirements.txt)."
-
-        quantity=0
-
-        echo -e "\n${GREEN}> Install package in the project (requirements.txt).${ENDCOLOR}\n"
-
-        while true; do
-
-            if [ "$quantity" -eq 0 ]; then
-                echo -e "${BLUE}You can directly edit the 'requirements.txt' file to add packages faster and answer 'no' to the next question.${ENDCOLOR}"
-                echo -e "\n${YELLOW}Do you want to install a package (pandas, numpy, snowflake-connector-python, streamlit, etc.)? (y/n)${ENDCOLOR}"
-                read -p "> " choice
-            else
-                echo -e "\n${YELLOW}Do you want to install another package (pandas, numpy, snowflake-connector-python, streamlit, etc.)? (y/n)${ENDCOLOR}"
-                read -p "> " choice
-            fi
-
-            case "$choice" in
-                [Yy]*)
-
-                    echo -e "\n${YELLOW}What is the package name?${ENDCOLOR}"
-                    read -p "> " package_name
-
-                    echo -e ""
-                    pip install "$package_name"
-
-                    if pip show "$package_name" >/dev/null 2>&1; then
-                        echo -e "\n${BLUE}The package '$package_name' is now installed.${ENDCOLOR}"
-                        echo $package_name >> $WORKSPACE_PATH/requirements.txt
-                    else
-                        echo -e "\n${RED}The package '$package_name' cannot be installed.${ENDCOLOR}"
-                    fi
-
-                    quantity=$((quantity + 1))
-
-                ;;
-                [Nn]*) echo -n ""; break ;;
-                *) echo -e "\n${RED}Please answer with 'y' (yes) or 'n' (no).${ENDCOLOR}\n" ;;
-
-            esac
-
-        done
-
-    fi
-
-    echo -e "\n${GREEN}> Install dependencies with pip (requirements.txt).${ENDCOLOR}\n"
-
-    if [ -z "$(cat $WORKSPACE_PATH/requirements.txt)" ]; then
-        echo -e "No package to install"
-    else
-        pip install -r $WORKSPACE_PATH/requirements.txt
-        echo -e "\nDone"
-    fi
-
     if [ ! -f "$WORKSPACE_PATH/requirements-dev.txt" ]; then
         echo -e "\n${GREEN}> Initialize pip Manager (requirements-dev.txt).${ENDCOLOR}\n"
 
@@ -120,15 +61,7 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
             precommit_package="pre-commit"
         fi
 
-cat <<EOF >>$WORKSPACE_PATH/requirements-dev.txt
-yamllint
-pyright
-pylint
-flake8
-mypy
-$formatter_package
-$precommit_package
-EOF
+        # On recupère le fichier par defaut + le specifique + on complete + dedoublonne + supprime ligne vide
 
         echo -e "Pip configuration file was created (requirements-dev.txt)."
 
@@ -179,5 +112,5 @@ EOF
     fi
 
 else
-    echo -e "\n${YELLOW}Nothing to do.${ENDCOLOR}"
+    echo -e "\n${YELLOW}Nothing to do because PIP is not used.${ENDCOLOR}"
 fi

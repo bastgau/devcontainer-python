@@ -23,8 +23,16 @@ else
     CONTAINER_TYPE=$(jq -r '.customizations.vscode.settings."container.type"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
 
     if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/tasks.json" ]; then
-        content=$(cat ./.devcontainer/templates/${CONTAINER_TYPE}/tasks.json)
-        merged_content=$(echo "$merged_content" | jq ".tasks += $content")
+
+        projects=(`ls $SOURCE_PATH/`)
+
+        for project in "${projects[@]}"; do
+            content=$(cat ./.devcontainer/templates/${CONTAINER_TYPE}/tasks.json)
+            path=$(echo "$SOURCE_PATH/$project" | sed 's/\//\\\//g')
+            content=$(echo "$content" | sed "s/{project_path}/$path/")
+            merged_content=$(echo "$merged_content" | jq ".tasks += $content")
+        done
+
     fi
 
     # Add other configurations.
@@ -34,7 +42,7 @@ else
     fi
 
     # Pretty-print the content and create the file.
-    formatted_content=$(echo $merged_content | jq '.tasks |= sort_by(.label)' | jq -c '.')
+    formatted_content=$(echo $merged_content | jq '(.tasks | unique) as $unique_tasks | .tasks = $unique_tasks' | jq '.tasks |= sort_by(.label)' | jq -c '.')
     echo $formatted_content | python -m json.tool --indent=2  > "$WORKSPACE_PATH/.vscode/tasks.json"
 
     echo -e "Done.\n"
