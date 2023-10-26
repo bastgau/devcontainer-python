@@ -21,7 +21,7 @@ while true; do
 
     case "$choice" in
         [Yy]*)
-            rm -f "$WORKSPACE_PATH/.devcontainer/templates"
+            rm -rf "$WORKSPACE_PATH/.devcontainer/templates"
             rm -rf "$WORKSPACE_PATH/docs/dev-container-configuration"
 
             install_files=()
