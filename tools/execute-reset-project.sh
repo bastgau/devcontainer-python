@@ -15,7 +15,10 @@ echo -e "${BLUE}#############################################################${E
 
 echo -e "\n${GREEN}> Reset project files.${ENDCOLOR}\n"
 
-pre-commit uninstall
+if which pre-commit > /dev/null 2>&1; then
+    pre-commit uninstall
+fi
+
 rm -rf .git/hooks
 
 rm -vf "$WORKSPACE_PATH/.devcontainer/user.env"
