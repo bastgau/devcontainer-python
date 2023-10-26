@@ -66,11 +66,11 @@
                 "editor.defaultFormatter": "<yourchoice>",
                 "git.preCommitEnabled": false,
                 "azureFunctions.scmDoBuildDuringDeployment": true,
+                "azureFunctions.pythonVenv": ".venv",
                 "azureFunctions.projectLanguage": "Python",
                 "azureFunctions.projectRuntime": "~4",
                 "azureFunctions.projectLanguageModel": 2,
-                "azureFunctions.deploySubpath": ".",
-                "azureFunctions.pythonVenv": ".venv",
+                "debug.internalConsoleOptions": "neverOpen",
                 "task.autoDetect": "off"
             }
         }
