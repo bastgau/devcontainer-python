@@ -1,6 +1,0 @@
-flake8
-mypy
-pylint
-pyright
-yamllint
-yapf
