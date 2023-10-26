@@ -19,7 +19,7 @@ VIRTUAL_ENVIRONMENT_DIRECTORY="/workspaces/app/.venv/bin"
 
 if [ -x "$VIRTUAL_ENVIRONMENT_DIRECTORY/pyright" ]; then
     echo -e "\n${YELLOW}> Pyright / Pylance.${ENDCOLOR}\n"
-    pyright $SOURCE_PATH
+    timeout --preserve-status 60s pyright $SOURCE_PATH
 fi
 
 # TOOL : pylint

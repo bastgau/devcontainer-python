@@ -52,7 +52,7 @@
                     "**/.pytest_cache": true,
                     "**/.python_packages": true
                 },
-                "editor.formatOnSaveMode": "file",
+                "editor.formatOnSaveMode": "modifications",
                 "editor.formatOnSave": true,
                 "mypy-type-checker.args": [],
                 "python.dependencyManager": "pip",
