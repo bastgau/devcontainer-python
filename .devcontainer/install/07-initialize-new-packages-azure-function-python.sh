@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # ignored: app-python
+# can-be-removed-after-installation
 
 . "$WORKSPACE_PATH/tools/color.sh"
 
