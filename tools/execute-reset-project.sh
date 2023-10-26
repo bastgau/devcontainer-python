@@ -25,6 +25,8 @@ rm -vf "$WORKSPACE_PATH/.devcontainer/user.env"
 
 rm -vf "$WORKSPACE_PATH/.vscode/launch.json"
 rm -vf "$WORKSPACE_PATH/.vscode/settings.json"
+rm -vf "$WORKSPACE_PATH/.vscode/extensions.json"
+rm -vf "$WORKSPACE_PATH/.vscode/tasks.json"
 
 rm -vf "$WORKSPACE_PATH/requirements-dev.txt"
 rm -vf "$WORKSPACE_PATH/requirements-test.txt"
