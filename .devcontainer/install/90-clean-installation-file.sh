@@ -43,6 +43,14 @@ while true; do
                     continue
                 fi
 
+                DEPENDENCY_MANAGER=$(jq -r '.customizations.vscode.settings."python.dependencyManager"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+
+                if grep -q "# ignored: $DEPENDENCY_MANAGER-dependency-manager" "$current_file"; then
+                    echo -e "- Deleted: "$current_file
+                    rm $current_file
+                    continue
+                fi
+
             done < <(find ./ -type f -name "*.sh" -print0)
 
             echo -e "\nDone. The installation files are deleted.\n"

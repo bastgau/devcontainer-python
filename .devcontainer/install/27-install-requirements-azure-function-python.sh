@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # ignored: app-python
+# ignored: poetry-dependency-manager
 
 . "$WORKSPACE_PATH/tools/color.sh"
 

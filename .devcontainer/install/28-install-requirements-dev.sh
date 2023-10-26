@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# ignored: poetry-dependency-manager
+
 . "$WORKSPACE_PATH/tools/color.sh"
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"

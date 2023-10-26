@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # ignored: azure-function-python
+# ignored: poetry-dependency-manager
 
 . "$WORKSPACE_PATH/tools/color.sh"
 
