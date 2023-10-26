@@ -1,6 +1,6 @@
 [
     {
-        "label":"Azure Function - func: host start",
+        "label":"Azure Function - Start: {project_name}",
         "type":"func",
         "command":"host start --script-root {project_path}",
         "problemMatcher":"$func-python-watch",

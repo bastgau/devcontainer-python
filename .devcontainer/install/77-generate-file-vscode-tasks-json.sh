@@ -30,6 +30,7 @@ else
             content=$(cat $WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/tasks.json)
             path=$(echo "$SOURCE_PATH/$project" | sed 's/\//\\\//g')
             content=$(echo "$content" | sed "s/{project_path}/$path/")
+            content=$(echo "$content" | sed "s/{project_name}/$project/")
             merged_content=$(echo "$merged_content" | jq ".tasks += $content")
         done
 

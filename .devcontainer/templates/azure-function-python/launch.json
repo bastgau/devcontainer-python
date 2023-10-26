@@ -1,10 +1,10 @@
 [
     {
-        "name": "Attach to Python Functions",
+        "name": "Attach to Python Functions: {project_name}",
         "type": "python",
         "request": "attach",
         "port": 9091,
-        "preLaunchTask": "Azure Function - func: host start",
+        "preLaunchTask": "Azure Function - Start: {project_name}",
         "justMyCode": true
     }
 ]
