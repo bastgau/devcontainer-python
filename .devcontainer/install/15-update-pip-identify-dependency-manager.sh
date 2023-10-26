@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# can-be-removed-after-installation
-
 . "$WORKSPACE_PATH/tools/color.sh"
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
