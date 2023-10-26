@@ -3,5 +3,5 @@ pyright
 pylint
 flake8
 mypy
-${formatter_package}
-${precommit_package}
+{formatter_package}
+{precommit_package}

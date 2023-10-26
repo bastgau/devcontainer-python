@@ -1,2 +1,2 @@
-${unittest_package}
-${coverage_package}
+{unittest_package}
+{coverage_package}

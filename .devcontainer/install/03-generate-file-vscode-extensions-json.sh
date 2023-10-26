@@ -23,7 +23,7 @@ else
     CONTAINER_TYPE=$(jq -r '.customizations.vscode.settings."container.type"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
 
     if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/extensions.json" ]; then
-        content=$(cat ./.devcontainer/templates/${CONTAINER_TYPE}/extensions.json)
+        content=$(cat $WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/extensions.json)
         merged_content=$(echo "$merged_content" | jq ".recommendations += $content")
     fi
 
@@ -37,7 +37,7 @@ else
 
     # Add other extensions.
     if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/extensions.json" ]; then
-        content=$(cat ./.devcontainer/templates/default/extensions.json)
+        content=$(cat $WORKSPACE_PATH/.devcontainer/templates/default/extensions.json)
         merged_content=$(echo "$merged_content" | jq ".recommendations += $content")
     fi
 

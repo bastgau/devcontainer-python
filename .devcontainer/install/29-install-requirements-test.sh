@@ -32,7 +32,25 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
             coverage_package="coverage"
         fi
 
-        # On recupère le fichier par defaut + le specifique + on complete + dedoublonne + supprime ligne vide
+        CONTAINER_TYPE=$(jq -r '.customizations.vscode.settings."container.type"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+
+        echo "" > /tmp/tmp_requirements.txt
+
+        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/requirements-test.txt" ]; then
+            cat "$WORKSPACE_PATH/.devcontainer/templates/default/requirements-test.txt" >> /tmp/tmp_requirements.txt
+        fi
+
+        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/requirements-test.txt" ]; then
+            cat "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/requirements-test.txt" >> /tmp/tmp_requirements.txt
+        fi
+
+        sed -i "s/{coverage_package}/$coverage_package/" /tmp/tmp_requirements.txt
+        sed -i "s/{unittest_package}/$unittest_package/" /tmp/tmp_requirements.txt
+
+        sed -i '/^$/d' /tmp/tmp_requirements.txt
+        sort -u /tmp/tmp_requirements.txt > $WORKSPACE_PATH/requirements-test.txt
+
+        rm -f /tmp/tmp_requirements.txt
 
         echo -e "Pip configuration file was created (requirements-test.txt).\n"
     fi

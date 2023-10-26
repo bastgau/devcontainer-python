@@ -61,7 +61,25 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
             precommit_package="pre-commit"
         fi
 
-        # On recupère le fichier par defaut + le specifique + on complete + dedoublonne + supprime ligne vide
+        CONTAINER_TYPE=$(jq -r '.customizations.vscode.settings."container.type"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+
+        echo "" > /tmp/tmp_requirements.txt
+
+        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/default/requirements-dev.txt" ]; then
+            cat "$WORKSPACE_PATH/.devcontainer/templates/default/requirements-dev.txt" >> /tmp/tmp_requirements.txt
+        fi
+
+        if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/requirements-dev.txt" ]; then
+            cat "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/requirements-dev.txt" >> /tmp/tmp_requirements.txt
+        fi
+
+        sed -i "s/{precommit_package}/$precommit_package/" /tmp/tmp_requirements.txt
+        sed -i "s/{formatter_package}/$formatter_package/" /tmp/tmp_requirements.txt
+
+        sed -i '/^$/d' /tmp/tmp_requirements.txt
+        sort -u /tmp/tmp_requirements.txt > $WORKSPACE_PATH/requirements-dev.txt
+
+        rm -f /tmp/tmp_requirements.txt
 
         echo -e "Pip configuration file was created (requirements-dev.txt)."
 
@@ -73,41 +91,6 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
         echo -e "No package to install\n"
     else
         pip install -r $WORKSPACE_PATH/requirements-dev.txt
-        echo -e "\nDone\n"
-    fi
-
-    if [ ! -f "$WORKSPACE_PATH/requirements-test.txt" ]; then
-        echo -e "${GREEN}> Initialize pip Manager (requirements-test.txt).${ENDCOLOR}\n"
-
-        unittest_package=""
-        coverage_package=""
-
-        active=$(jq -r '.customizations.vscode.settings."python.testing.pytestEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
-
-        if [ "$active" = "true" ]; then
-            unittest_package="pytest-xdist"
-        fi
-
-        active=$(jq -r '.customizations.vscode.settings."python.testing.coverageEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
-
-        if [ "$active" = "true" ]; then
-            coverage_package="coverage"
-        fi
-
-cat <<EOF >>$WORKSPACE_PATH/requirements-test.txt
-$unittest_package
-$coverage_package
-EOF
-
-        echo -e "Pip configuration file was created (requirements-test.txt).\n"
-    fi
-
-    echo -e "${GREEN}> Install dependencies with pip (requirements-test.txt).${ENDCOLOR}\n"
-
-    if [ -z "$(cat $WORKSPACE_PATH/requirements-test.txt)" ]; then
-        echo -e "No package to install\n"
-    else
-        pip install -r $WORKSPACE_PATH/requirements-test.txt
         echo -e "\nDone\n"
     fi
 

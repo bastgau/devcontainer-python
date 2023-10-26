@@ -5,12 +5,5 @@
         "command":"host start --script-root {project_path}",
         "problemMatcher":"$func-python-watch",
         "isBackground":true
-    },
-    {
-        "label":"Azure Function - func: host start",
-        "type":"func",
-        "command":"host start --script-root {project_path}",
-        "problemMatcher":"$func-python-watch",
-        "isBackground":true
     }
 ]

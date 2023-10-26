@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ignored: azure-function-python
+# ignored: app-python
 
 . "$WORKSPACE_PATH/tools/color.sh"
 
