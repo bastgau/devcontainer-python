@@ -1,4 +1,4 @@
-ARG VARIANT="3.10"
+ARG VARIANT="3.11"
 FROM mcr.microsoft.com/azure-functions/python:4-python${VARIANT}-core-tools
 
 WORKDIR /workspaces/app

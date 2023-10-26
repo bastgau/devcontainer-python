@@ -45,6 +45,7 @@ else
                     mkdir -p "$SOURCE_PATH/$package_name"
 
                     cp -r "$WORKSPACE_PATH/.devcontainer/templates/azure-function-python/new_package/"* "$SOURCE_PATH/$package_name"
+                    ln -s "$WORKSPACE_PATH/.venv" "$SOURCE_PATH/$package_name/.venv"
 
                     quantity=$((quantity + 1))
 

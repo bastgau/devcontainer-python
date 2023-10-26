@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "ms-azuretools.vscode-azurefunctions",
+    "ms-python.python",
+    "eeyore.yapf",
+    "njpwerner.autodocstring",
+    "aaron-bond.better-comments",
+    "mohsen1.prettify-json",
+    "vscode-icons-team.vscode-icons",
+    "gruntfuggly.todo-tree"
+  ]
+}

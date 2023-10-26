@@ -4,6 +4,9 @@
         "type":"func",
         "command":"host start --script-root {project_path}",
         "problemMatcher":"$func-python-watch",
-        "isBackground":true
+        "isBackground":true,
+        "options": {
+            "cwd": "{project_path}"
+          }
     }
 ]
