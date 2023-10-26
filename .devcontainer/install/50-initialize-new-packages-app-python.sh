@@ -6,7 +6,7 @@
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-echo -e "${BLUE}#####     Initialize new packages                       #####${ENDCOLOR}"
+echo -e "${BLUE}#####     Initialize new packages (app python)          #####${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
