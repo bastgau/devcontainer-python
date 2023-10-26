@@ -9,6 +9,7 @@ echo -e "${BLUE}#####                                                   #####${E
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
 mkdir -p $SOURCE_PATH
+mkdir "$WORKSPACE_PATH/.vscode"
 
 if [ -f "$WORKSPACE_PATH/.vscode/extensions.json" ]; then
     echo -e "\n${YELLOW}Nothing to do because file is already existing.\n${ENDCOLOR}"
