@@ -27,37 +27,25 @@ else
 
     quantity=0
 
-    for package_directory in $package_directories; do
+    CONTAINER_TYPE=$(jq -r '.customizations.vscode.settings."container.type"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
 
-        if [ ! -d "$UNIT_TESTING_PATH/tests_$package_directory" ];
+    for package_name in $package_directories; do
+
+        if [ ! -d "$UNIT_TESTING_PATH/tests_$package_name" ];
         then
 
-            mkdir -p "$UNIT_TESTING_PATH/tests_$package_directory"
-            touch "$UNIT_TESTING_PATH/tests_$package_directory/__init__.py"
+            mkdir -p "$UNIT_TESTING_PATH/tests_$package_name"
+            touch "$UNIT_TESTING_PATH/tests_$package_name/__init__.py"
 
-cat <<EOF >"$UNIT_TESTING_PATH/tests_$package_directory/test_application.py"
-""" File : tests/tests_$package_directory/test_application.py """
+            cp -r "$WORKSPACE_PATH/.devcontainer/templates/$CONTAINER_TYPE/unittest/"* "$UNIT_TESTING_PATH/tests_$package_name/"
 
-from typing import Any
+            files=(`ls "$UNIT_TESTING_PATH/tests_$package_name/*.py"`)
 
-import $package_directory.application as app
+            for file in "${files[@]}"; do
+                sed -i "s/{package_name}/$package_name/" "$file"
+            done
 
-
-def test_hello() -> None:  # pylint: disable=unused-variable
-    """..."""
-
-    assert app.hello() == "Hello John Doe from $package_directory! How are you today?"
-    assert app.hello("Jane Doe") == "Hello Jane Doe from $package_directory! How are you today?"
-
-
-def test_run(capsys: Any) -> None:  # pylint: disable=unused-variable
-    """..."""
-
-    app.run()
-    capured = capsys.readouterr()
-    assert capured.out == "Hello John Doe from $package_directory! How are you today?\n"
-EOF
-            echo -e "\nUnit Testing directory for 'tests_$package_directory' created"
+            echo -e "\nUnit Testing directory for 'tests_$package_name' created"
             quantity=$((quantity + 1))
         fi
 

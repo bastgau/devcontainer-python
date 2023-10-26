@@ -34,7 +34,7 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
         fi
 
         sed -i '/^$/d' /tmp/tmp_requirements.txt
-        sort -u /tmp/tmp_requirements.txt > $project/requirements.txt
+        sort -u /tmp/tmp_requirements.txt > $WORKSPACE_PATH/requirements.txt
 
         rm -f /tmp/tmp_requirements.txt
 
@@ -48,10 +48,10 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
 
             if [ "$quantity" -eq 0 ]; then
                 echo -e "${BLUE}You can directly edit the 'requirements.txt' file to add packages faster and answer 'no' to the next question.${ENDCOLOR}"
-                echo -e "\n${YELLOW}Do you want to install a package (pandas, numpy, snowflake-connector-python, streamlit, etc.)? (y/n)${ENDCOLOR}"
+                echo -e "\n${YELLOW}Do you want to install a package (pandas, numpy, marshmallow, streamlit, etc.)? (y/n)${ENDCOLOR}"
                 read -p "> " choice
             else
-                echo -e "\n${YELLOW}Do you want to install another package (pandas, numpy, snowflake-connector-python, streamlit, etc.)? (y/n)${ENDCOLOR}"
+                echo -e "\n${YELLOW}Do you want to install another package (pandas, numpy, marshmallow, streamlit, etc.)? (y/n)${ENDCOLOR}"
                 read -p "> " choice
             fi
 
@@ -89,7 +89,7 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
         echo -e "No package to install"
     else
         pip install -r $WORKSPACE_PATH/requirements.txt
-        echo -e "\nDone"
+        echo -e "\nDone\n"
     fi
 
 else

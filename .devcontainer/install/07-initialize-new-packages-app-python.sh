@@ -43,73 +43,13 @@ else
                 else
 
                     mkdir -p "$SOURCE_PATH/$package_name"
+                    cp -r "$WORKSPACE_PATH/.devcontainer/templates/azure-function-python/new_package/"* "$SOURCE_PATH/$package_name"
 
-                    touch "$SOURCE_PATH/$package_name/py.typed"
-                    touch "$SOURCE_PATH/$package_name/__init__.py"
+                    files=(`ls $SOURCE_PATH/$package_name/*.py`)
 
-cat <<EOF >"$SOURCE_PATH/$package_name/application.py"
-""" File: src/$package_name/application.py """
-
-
-def run() -> None:  # pylint: disable=unused-variable
-    """
-    The \`run\` function calls the \`hello\` function and prints the returned message.
-    """
-    message: str = hello()
-    print(message)
-
-
-def hello(name: str = "John Doe") -> str:
-    """
-    The function \`hello\` takes an optional \`name\` parameter and returns a greeting message with the
-    provided name or a default name if none is provided.
-
-    Args:
-    name (str): The \`name\` parameter is a string that represents a person's name.
-    It has a default value of "John Doe" if no value is provided when calling the \`hello\` function.
-
-    Returns:
-    the string "Hello {name} from $package_name! How are you today!"
-    """
-
-    return f"Hello {name} from $package_name! How are you today?"
-EOF
-
-cat <<EOF >"$SOURCE_PATH/$package_name/__main__.py"
-""" File: src/$package_name/__main__.py """
-
-import $package_name.application as app
-
-if __name__ == "__main__":
-    app.run()
-EOF
-
-                    # Si le package streamlit est installé alors on ajoute le fichier run_streamlit.py
-                    streamlit_package=(`pip freeze | grep streamlit | wc -l`)
-
-                    if [ "$streamlit_package" == "1" ]; then
-
-cat <<EOF >"$SOURCE_PATH/$package_name/run_streamlit.py"
-""" File: src/$package_name/run_streamlit.py """
-
-from typing import Any
-
-import streamlit as st
-import $package_name.application as app
-
-
-def run_streamlit() -> None:  # pylint: disable=unused-variable
-    """
-    The \`run_streamlit\` function calls the \`hello\` function and start a streamlit app.
-    """
-    message: Any = app.hello()
-    st.write(message)  # pyright: ignore
-
-
-run_streamlit()
-EOF
-
-                    fi
+                    for file in "${files[@]}"; do
+                        sed -i "s/{package_name}/$package_name/" "$file"
+                    done
 
                     quantity=$((quantity + 1))
 
