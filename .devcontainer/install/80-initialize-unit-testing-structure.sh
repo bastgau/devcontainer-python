@@ -39,7 +39,7 @@ else
 
             cp -r "$WORKSPACE_PATH/.devcontainer/templates/$CONTAINER_TYPE/unittest/"* "$UNIT_TESTING_PATH/tests_$package_name/"
 
-            files=(`ls "$UNIT_TESTING_PATH/tests_$package_name/*.py"`)
+            files=(`ls "$UNIT_TESTING_PATH/tests_$package_name/"*.py`)
 
             for file in "${files[@]}"; do
                 sed -i "s/{package_name}/$package_name/" "$file"

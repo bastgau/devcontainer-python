@@ -43,7 +43,7 @@ else
                 else
 
                     mkdir -p "$SOURCE_PATH/$package_name"
-                    cp -r "$WORKSPACE_PATH/.devcontainer/templates/azure-function-python/new_package/"* "$SOURCE_PATH/$package_name"
+                    cp -r "$WORKSPACE_PATH/.devcontainer/templates/app-python/new_package/"* "$SOURCE_PATH/$package_name"
 
                     files=(`ls $SOURCE_PATH/$package_name/*.py`)
 
