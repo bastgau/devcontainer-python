@@ -52,6 +52,7 @@
                 },
                 "editor.formatOnSaveMode": "modifications",
                 "editor.formatOnSave": true,
+                "editor.formatOnType": false,
                 "mypy-type-checker.args": [],
                 "_python.dependencyManager": "pip",
                 "__python.dependencyManager": "poetry",
