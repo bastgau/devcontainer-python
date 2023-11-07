@@ -54,6 +54,7 @@
                 },
                 "editor.formatOnSaveMode": "modifications",
                 "editor.formatOnSave": true,
+                "editor.formatOnType": false,
                 "mypy-type-checker.args": [],
                 "python.dependencyManager": "pip",
                 "python.pip.extraIndexUrl": null,
