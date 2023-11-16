@@ -25,7 +25,7 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
         active=$(jq -r '.customizations.vscode.settings."python.testing.pytestEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
 
         if [ "$active" = "true" ]; then
-            unittest_package="pytest-xdist"
+            unittest_package="pytest-xdist\npytest-mock"
         fi
 
         active=$(jq -r '.customizations.vscode.settings."python.testing.coverageEnabled"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
