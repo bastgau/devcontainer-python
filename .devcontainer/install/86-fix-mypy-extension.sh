@@ -10,7 +10,16 @@ echo -e "${BLUE}#############################################################${E
 
 echo -e "\n${GREEN}> Fix Mypy extension.${ENDCOLOR}\n"
 
-ORIGINAL_FILE="$HOME/.vscode-server/extensions/ms-python.mypy-type-checker-2023.4.0/bundled/tool/lsp_server.py"
+ORIGINAL_FILE_1="$HOME/.vscode-server/extensions/ms-python.mypy-type-checker-2023.4.0/bundled/tool/lsp_server.py"
+ORIGINAL_FILE_2="$HOME/.vscode-server/extensions/ms-python.mypy-type-checker-2023.6.0/bundled/tool/lsp_server.py"
+
+if [ -f "$ORIGINAL_FILE_1" ]; then
+    $ORIGINAL_FILE=$ORIGINAL_FILE_1
+fi
+
+if [ -f "$ORIGINAL_FILE_2" ]; then
+    $ORIGINAL_FILE=$ORIGINAL_FILE_2
+fi
 
 if [ -f "$ORIGINAL_FILE" ]; then
 
