@@ -23,6 +23,7 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
 
     projects=`find "$SOURCE_PATH" -mindepth 1 -maxdepth 1 -type d -name "*"`
     requirements_files=`find "$SOURCE_PATH" -mindepth 2 -maxdepth 2 -type f -name 'requirements.txt'`
+    hosts_files=`find "$SOURCE_PATH" -mindepth 2 -maxdepth 2 -type f -name 'host.json'`
 
     if [ -n "$requirements_files" ]; then
 
@@ -35,7 +36,7 @@ if [ "$DEPENDENCY_MANAGER" = "pip" ]; then
         echo -e "\n${BLUE}These files will be used and not modified. No other file will be created.${ENDCOLOR}"
         no_existing_file=false
 
-        if [ "$(echo "$requirements_files" | wc -l)" -ne "$(echo "$projects" | wc -l)" ]; then
+        if [ "$(echo "$requirements_files" | wc -l)" -ne "$(echo "$hosts_files" | wc -l)" ]; then
             echo -e "\n${RED}The number of 'requirements.txt' files should match the number of Azure Function projects.${ENDCOLOR}\n"
         fi
 
