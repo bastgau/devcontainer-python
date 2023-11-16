@@ -16,6 +16,10 @@ created=false
 
 for project in "${projects[@]}"; do
 
+    if [ ! -f "$SOURCE_PATH/$project/host.json" ]; then
+        continue
+    fi
+
     if [ ! -f "$SOURCE_PATH/$project/local.settings.json" ]; then
         echo -e "\n${GREEN}> Generate local.settings.json file for ${project}.${ENDCOLOR}"
         cp "$SOURCE_PATH/$project/local.settings.json-example" "$WORKSPACE_PATH/src/$project/local.settings.json"
