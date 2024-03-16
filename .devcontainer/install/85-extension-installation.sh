@@ -45,7 +45,7 @@ if [ "$defaultFormatter" == "ms-python.autopep8" ] || [ "$defaultFormatter" == "
 
         quantity=(`code --list-extensions --show-versions 2>/dev/null | grep "$defaultFormatter" | wc -l`)
 
-        if [ "$quantity" == "0" ]; then
+        if [ "$quantity" == "-1" ]; then
 
             echo -e "\n${RED}The extension has not been automatically installed.${ENDCOLOR}"
             echo -e "\n${BLUE}To install the extension manually, you can in the sidebar on the left, in the 'extension' menu (ctrl+shift+x) search for the extension from its extension id which is:${ENDCOLOR} '$defaultFormatter'\n"
