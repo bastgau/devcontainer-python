@@ -1,7 +1,7 @@
 [
     {
         "name": "Execute module '{project_name}'",
-        "type": "python",
+        "type": "debugpy",
         "request": "launch",
         "module": "{project_name}"
     }

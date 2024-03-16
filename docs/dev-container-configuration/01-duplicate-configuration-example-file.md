@@ -2,7 +2,21 @@
 
 # Duplicate configuration example file
 
-Before you begin, you need to rename the file named *'devcontainer.json-example'* located in the *'.devcontainer/'* directory to *'devcontainer.json'*.
+Before you begin, you need to create a *'devcontainer.json'* file and a *'Dockerfile'* file in the directory *'.devcontainer/'*.
+
+If you want to create a python application, you need to copy/paste the following files into the directory: *'.devcontainer/'*.
+
+```
+.devcontainer/templates/app-python/devcontainer.json
+.devcontainer/templates/app-python/Dockerfile
+```
+
+If you want to create an application based on Azure Functions, you must copy/paste the following files into the directory: *'.devcontainer/'*:
+
+```
+.devcontainer/templates/azure-function-python/devcontainer.json
+.devcontainer/templates/azure-function-python/Dockerfile
+```
 
 The new tree should look like :
 
@@ -14,6 +28,8 @@ The new tree should look like :
 ├── ...
 └── install.sh
 ````
+
+
 
 Now we will mainly modify this file.
 

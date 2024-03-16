@@ -1,13 +1,12 @@
 #!/bin/bash
 
-# ignored: azure-function-python
 # ignored: poetry-dependency-manager
 
 . "$WORKSPACE_PATH/tools/color.sh"
 
 echo -e "\n${BLUE}#############################################################${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
-echo -e "${BLUE}#####  Install requirements.txt (app-python version)    #####${ENDCOLOR}"
+echo -e "${BLUE}#####  Install requirements.txt                         #####${ENDCOLOR}"
 echo -e "${BLUE}#####                                                   #####${ENDCOLOR}"
 echo -e "${BLUE}#############################################################${ENDCOLOR}"
 
