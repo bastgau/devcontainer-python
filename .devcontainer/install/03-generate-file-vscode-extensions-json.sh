@@ -13,11 +13,11 @@ echo -e "${BLUE}#############################################################${E
 mkdir -p $SOURCE_PATH
 mkdir -p "$WORKSPACE_PATH/.vscode"
 
-if [ -f "$WORKSPACE_PATH/.vscode/extensions.json" ]; then
-    echo -e "\n${YELLOW}Nothing to do because file is already existing.\n${ENDCOLOR}"
-else
+echo -e "\n${GREEN}> Generate file '.vscode/extensions.json'.${ENDCOLOR}\n"
 
-    echo -e "\n${GREEN}> Generate file '.vscode/extensions.json'.${ENDCOLOR}\n"
+if [ -f "$WORKSPACE_PATH/.vscode/extensions.json" ]; then
+    echo -e "${YELLOW}Nothing to do because file is already existing.\n${ENDCOLOR}"
+else
 
     # Create initial file.
     merged_content=$(echo '{"recommendations": []}' | jq '.')
@@ -27,14 +27,6 @@ else
 
     if [ -f "$WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/config/extensions.json" ]; then
         content=$(cat $WORKSPACE_PATH/.devcontainer/templates/${CONTAINER_TYPE}/config/extensions.json)
-        merged_content=$(echo "$merged_content" | jq ".recommendations += $content")
-    fi
-
-    # Add extensions specifically for the default formatter.
-    defaultFormatter=$(jq -r '.customizations.vscode.settings."editor.defaultFormatter"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
-
-    if [ "$defaultFormatter" == "ms-python.autopep8" ] || [ "$defaultFormatter" == "ms-python.black-formatter" ] || [ "$defaultFormatter" == "eeyore.yapf" ]; then
-        content="[\"$defaultFormatter\"]"
         merged_content=$(echo "$merged_content" | jq ".recommendations += $content")
     fi
 
@@ -50,4 +42,17 @@ else
 
     echo -e "Done.\n"
 
+fi
+
+# Add extensions specifically for the default formatter in 'devcontainer.json' file.
+defaultFormatter=$(jq -r '.customizations.vscode.settings."editor.defaultFormatter"' $WORKSPACE_PATH/.devcontainer/devcontainer.json);
+
+if [ "$defaultFormatter" == "ms-python.autopep8" ] || [ "$defaultFormatter" == "ms-python.black-formatter" ] || [ "$defaultFormatter" == "eeyore.yapf" ]; then
+    exist=`cat $WORKSPACE_PATH/.devcontainer/devcontainer.json | jq ".customizations.vscode.extensions | contains([\"$defaultFormatter\"])"`
+    if [ $exist == 'false' ]; then
+        echo -e "${GREEN}> Update file '.devcontainer/devcontainer.json'.${ENDCOLOR}\n"
+        cat $WORKSPACE_PATH/.devcontainer/devcontainer.json | jq ".customizations.vscode.extensions += [\"$defaultFormatter\"]" > /tmp/devcontainer.json
+        mv /tmp/devcontainer.json $WORKSPACE_PATH/.devcontainer/devcontainer.json
+        echo -e "Done.\n"
+    fi
 fi
